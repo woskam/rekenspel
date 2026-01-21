@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekenspel - Tafels Boven de 10</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Home</a>
+        
+        <h1>Rekenspel - Tafels</h1>
+        
+        <div class="score-info">
+            <div class="score-item">Score: <span id="score">0</span></div>
+            <div class="score-item">Vraag: <span id="question-number">1</span></div>
+        </div>
+
+        <!-- Vraag en invoer -->
+        <div class="question-box">
+            <div class="question" id="question">0 × 0 =</div>
+            
+            <div class="input-group">
+                <input 
+                    type="number" 
+                    id="answer-input" 
+                    placeholder="Antwoord..." 
+                    autofocus>
+                <button id="submit-btn" onclick="checkAnswer()">Controleer</button>
+            </div>
+        </div>
+
+        <!-- Rekenstrategieën -->
+        <div class="strategies-box" id="strategies-box">
+            <details>
+                <summary>💡 Rekenmanieren</summary>
+                <div id="strategies"></div>
+            </details>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="stats">
+            <div class="stat">Goed: <span id="correct-count">0</span></div>
+            <div class="stat">Fout: <span id="incorrect-count">0</span></div>
+        </div>
+
+        <button onclick="resetGame()" class="reset-btn">↺ Nieuw spel</button>
+    </div>
+
+    <script src="src/game.js"></script>
+</body>
+</html>

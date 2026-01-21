@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice - Rekenspel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .table-selector {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .table-btn {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: white;
+            color: #2d5016;
+            border: 2px solid #3a6b1f;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .table-btn:hover {
+            background: #3a6b1f;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .selection-screen {
+            text-align: center;
+        }
+
+        .selection-screen h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .mc-game {
+            display: none;
+        }
+
+        .mc-info {
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .mc-info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .option-btn {
+            padding: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
+            background: white;
+            color: #2d5016;
+            border: 3px solid #3a6b1f;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #f0f8ff;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #155724;
+            color: #155724;
+        }
+
+        .option-btn.incorrect {
+            background: #f8d7da;
+            border-color: #721c24;
+            color: #721c24;
+        }
+
+        .results-screen {
+            display: none;
+            text-align: center;
+            color: white;
+        }
+
+        .results-screen h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .result-stat {
+            font-size: 1.3em;
+            margin: 15px 0;
+        }
+
+        .result-stat strong {
+            font-size: 1.5em;
+            color: #b3e5fc;
+        }
+
+        .play-again-btn {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Home</a>
+
+        <!-- Selection Screen -->
+        <div class="selection-screen" id="selectionScreen">
+            <h1>🎯 Multiple Choice</h1>
+            <h2>Kies een tafel (1-20):</h2>
+            <div class="table-selector" id="tableSelector"></div>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="mc-game" id="mcGame">
+            <h1>🎯 Multiple Choice - Tafel <span id="selectedTable">0</span></h1>
+            
+            <div class="mc-info">
+                <div class="mc-info-item">Vraag: <span id="question-number">1</span>/10</div>
+                <div class="mc-info-item">Goed: <span id="correct-count">0</span></div>
+                <div class="mc-info-item">Fout: <span id="incorrect-count">0</span></div>
+            </div>
+
+            <div class="question-box">
+                <div class="question" id="question">0 × 0 =</div>
+            </div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+
+            <div class="feedback" id="feedback" style="max-width: 600px; margin-left: auto; margin-right: auto;"></div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="resetMC()" class="reset-btn">↺ Nieuwe ronde</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <h1>🎯 Multiple Choice Afgelopen!</h1>
+            
+            <div class="result-stat">
+                Goed beantwoord: <strong><span id="finalCorrect">0</span>/10</strong>
+            </div>
+            <div class="result-stat">
+                Percentage: <strong><span id="finalPercentage">0</span>%</strong>
+            </div>
+
+            <button onclick="location.href='spel-multiple-choice.html'" class="reset-btn play-again-btn">🔄 Nog een keer</button>
+        </div>
+    </div>
+
+    <script src="src/multiple-choice.js"></script>
+</body>
+</html>

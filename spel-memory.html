@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory - Rekenspel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .table-selector {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .table-btn {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: white;
+            color: #2d5016;
+            border: 2px solid #3a6b1f;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .table-btn:hover {
+            background: #3a6b1f;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .selection-screen {
+            text-align: center;
+        }
+
+        .selection-screen h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .memory-game {
+            display: none;
+        }
+
+        .memory-info {
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .memory-info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 500px) {
+            .memory-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #3a6b1f 0%, #2d5016 100%);
+            border: 3px solid white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.8em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            user-select: none;
+            color: white;
+            position: relative;
+        }
+
+        .memory-card:hover:not(.matched):not(.flipped) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-card.flipped {
+            background: white;
+            color: #2d5016;
+        }
+
+        .memory-card.matched {
+            background: #d4edda;
+            border-color: #155724;
+            color: #155724;
+            cursor: default;
+        }
+
+        .memory-card.matched::after {
+            content: '✓';
+            position: absolute;
+            font-size: 2em;
+        }
+
+        .results-screen {
+            display: none;
+            text-align: center;
+            color: white;
+        }
+
+        .results-screen h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .result-stat {
+            font-size: 1.3em;
+            margin: 15px 0;
+        }
+
+        .result-stat strong {
+            font-size: 1.5em;
+            color: #b3e5fc;
+        }
+
+        .play-again-btn {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Home</a>
+
+        <!-- Selection Screen -->
+        <div class="selection-screen" id="selectionScreen">
+            <h1>🧠 Memory</h1>
+            <h2>Kies een tafel (1-20):</h2>
+            <div class="table-selector" id="tableSelector"></div>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="memory-game" id="memoryGame">
+            <h1>🧠 Memory - Tafel <span id="selectedTable">0</span></h1>
+            
+            <div class="memory-info">
+                <div class="memory-info-item">Paren: <span id="pairs-found">0</span>/10</div>
+                <div class="memory-info-item">Pogingen: <span id="attempts">0</span></div>
+            </div>
+
+            <div class="memory-grid" id="memoryGrid"></div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button onclick="resetMemory()" class="reset-btn">↺ Nieuwe ronde</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <h1>🧠 Memory Afgelopen!</h1>
+            
+            <div class="result-stat">
+                Alle paren gevonden! 🎉
+            </div>
+            <div class="result-stat">
+                Aantal pogingen: <strong><span id="finalAttempts">0</span></strong>
+            </div>
+
+            <button onclick="location.href='spel-memory.html'" class="reset-btn play-again-btn">🔄 Nog een keer</button>
+        </div>
+    </div>
+
+    <script src="src/memory.js"></script>
+</body>
+</html>
