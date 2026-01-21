@@ -36,3 +36,7 @@ rekenspel/
 Gewoon `index.html` openen in een webbrowser!
 
 Geen installatie of build process nodig.
+
+## 📝 Notities
+
+- Test deployment pipeline
