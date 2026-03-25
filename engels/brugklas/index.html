@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brugklas Engels - Leren met Spellen</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .home-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .home-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .home-container .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 600px) {
+            .lessons-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .lessons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-decoration: none;
+            color: #2d5016;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .lesson-card h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #2d5016;
+        }
+
+        .lesson-card p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: #2d5016;
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .lesson-card.coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .badge.podcast {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge.games {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="../index.html" class="back-link">← Terug naar Engels</a>
+        <div class="home-container">
+            <h1>Brugklas Engels</h1>
+            <p class="subtitle">Kies een les om te oefenen</p>
+
+            <div class="lessons-grid">
+                <!-- Introductie -->
+                <a href="les1/index.html" class="lesson-card">
+                    <div class="lesson-number">1</div>
+                    <h2>Introductie</h2>
+                    <p>Introductie brugklas Engels</p>
+                    <div class="badges">
+                        <span class="badge podcast">Podcast</span>
+                    </div>
+                </a>
+
+                <!-- Hobbies -->
+                <a href="les2/index.html" class="lesson-card">
+                    <div class="lesson-number">2</div>
+                    <h2>Hobbies</h2>
+                    <p>Eerste les hobbies</p>
+                    <div class="badges">
+                        <span class="badge podcast">Podcast</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

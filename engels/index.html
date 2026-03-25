@@ -24,27 +24,69 @@
             line-height: 1.6;
         }
 
-        .coming-soon-message {
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #2d5016;
+        }
+
+        .class-card {
             background: white;
             border-radius: 15px;
-            padding: 50px 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .coming-soon-message h2 {
+            padding: 40px 30px;
+            text-decoration: none;
             color: #2d5016;
-            font-size: 2em;
-            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
-        .coming-soon-message p {
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .class-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #2d5016;
+        }
+
+        .class-card p {
             color: #666;
-            font-size: 1.1em;
+            font-size: 1em;
+            margin: 0;
         }
 
-        .coming-soon-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
+        .class-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -55,11 +97,15 @@
             <h1>Engels</h1>
             <p>Leer Engelse woordjes en zinnen met leuke spellen!</p>
 
-            <div class="coming-soon-message">
-                <div class="coming-soon-icon">🇬🇧</div>
-                <h2>Binnenkort beschikbaar!</h2>
-                <p>We werken hard aan nieuwe Engelse spellen. Kom snel terug!</p>
+            <div class="tabs">
+                <button class="tab-btn active">Brugklas</button>
             </div>
+
+            <a href="brugklas/index.html" class="class-card">
+                <div class="class-icon">📚</div>
+                <h2>Brugklas</h2>
+                <p>Spellen en podcasts voor brugklas Engels</p>
+            </a>
         </div>
     </div>
 </body>
