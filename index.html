@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekenspel - Tafels Boven de 10</title>
+    <title>Leren met Spellen</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .home-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             text-align: center;
         }
 
@@ -17,114 +17,128 @@
             margin-bottom: 20px;
         }
 
-        .home-container p {
+        .home-container .subtitle {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2em;
-            margin-bottom: 40px;
+            font-size: 1.3em;
+            margin-bottom: 50px;
             line-height: 1.6;
         }
 
-        .games-grid {
+        .subjects-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 30px;
         }
 
-        @media (min-width: 600px) {
-            .games-grid {
+        @media (min-width: 700px) {
+            .subjects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 500px) and (max-width: 699px) {
+            .subjects-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .game-card {
+        .subject-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 40px 30px;
             text-decoration: none;
             color: #2d5016;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .game-card h2 {
+        .subject-card h2 {
             font-size: 1.8em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #2d5016;
         }
 
-        .game-card p {
+        .subject-card p {
             color: #666;
             font-size: 1em;
             margin: 0;
+            line-height: 1.5;
         }
 
-        .game-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
+        .subject-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
         }
 
-        .coming-soon {
+        .subject-card.coming-soon {
             opacity: 0.6;
             pointer-events: none;
+            position: relative;
         }
 
-        .coming-soon p {
-            color: #999;
-        }
-
-        .coming-soon .badge {
-            display: inline-block;
-            background: #ccc;
+        .subject-card.coming-soon::after {
+            content: 'Binnenkort';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #999;
             color: white;
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8em;
-            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .games-count {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5016;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="home-container">
-            <h1>🎮 Rekenspel</h1>
-            <p>Leer makkelijk de tafels van 11 tot 20 met slimme rekenstrategieën!</p>
-            
-            <div class="games-grid">
-                <!-- Tafelspel -->
-                <a href="spel-tafels.html" class="game-card">
-                    <div class="game-icon">✏️</div>
-                    <h2>Tafels Oefenen</h2>
-                    <p>Vermenigvuldig getallen van 11 tot 25 met uitleggen</p>
+            <h1>Leren met Spellen</h1>
+            <p class="subtitle">Kies een vak en leer spelenderwijs!</p>
+
+            <div class="subjects-grid">
+                <!-- Wiskunde -->
+                <a href="rekenspel/index.html" class="subject-card">
+                    <div class="subject-icon">🔢</div>
+                    <h2>Wiskunde</h2>
+                    <p>Oefen tafels van 11 tot 20 met slimme rekenstrategieën</p>
+                    <span class="games-count">4 spellen</span>
                 </a>
 
-                <!-- Multiple Choice -->
-                <a href="spel-multiple-choice.html" class="game-card">
-                    <div class="game-icon">🎯</div>
-                    <h2>Multiple Choice</h2>
-                    <p>Kies het juiste antwoord uit 4 mogelijkheden</p>
+                <!-- Engels -->
+                <a href="engels/index.html" class="subject-card coming-soon">
+                    <div class="subject-icon">🇬🇧</div>
+                    <h2>Engels</h2>
+                    <p>Leer Engelse woordjes en zinnen</p>
+                    <span class="games-count">0 spellen</span>
                 </a>
 
-                <!-- Memory -->
-                <a href="spel-memory.html" class="game-card">
-                    <div class="game-icon">🧠</div>
-                    <h2>Memory</h2>
-                    <p>Vind het juiste antwoord bij de vermenigvuldiging</p>
-                </a>
-
-                <!-- Speed Challenge -->
-                <a href="spel-speed.html" class="game-card">
-                    <div class="game-icon">⚡</div>
-                    <h2>Speed Challenge</h2>
-                    <p>Zoveel mogelijk goed in 60 seconden</p>
+                <!-- Frans -->
+                <a href="frans/index.html" class="subject-card coming-soon">
+                    <div class="subject-icon">🇫🇷</div>
+                    <h2>Frans</h2>
+                    <p>Leer Franse woordjes en zinnen</p>
+                    <span class="games-count">0 spellen</span>
                 </a>
             </div>
         </div>
     </div>
 </body>
-</html> 
+</html>
