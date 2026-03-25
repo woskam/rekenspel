@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woordenlijst - Les 1 Introductie</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .lesson-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .lesson-container h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .lesson-container .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .category {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category h2 {
+            color: #2d5016;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+
+        .category-icon {
+            margin-right: 10px;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .word-item {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .word-en {
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .word-nl {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .verb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+        }
+
+        .verb-item {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .verb-base {
+            font-weight: bold;
+            color: #2d5016;
+            font-size: 1.1em;
+        }
+
+        .verb-forms {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .verb-nl {
+            color: #888;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        .sentence-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sentence-list li {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .sentence-en {
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .sentence-nl {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .opposites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .opposite-item {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .opposite-pair {
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .opposite-vs {
+            color: #999;
+            margin: 0 8px;
+        }
+
+        .opposite-nl {
+            color: #666;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Les 1</a>
+        <div class="lesson-container">
+            <h1>Woordenlijst</h1>
+            <p class="subtitle">Alle woorden en zinnen van Les 1: Introductie</p>
+
+            <!-- Persoonlijke voornaamwoorden -->
+            <div class="category">
+                <h2><span class="category-icon">👤</span>Persoonlijke voornaamwoorden</h2>
+                <div class="word-grid">
+                    <div class="word-item">
+                        <span class="word-en">I</span>
+                        <span class="word-nl">Ik</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">You</span>
+                        <span class="word-nl">Jij / Je</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">He</span>
+                        <span class="word-nl">Hij</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">She</span>
+                        <span class="word-nl">Zij (vrouw)</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">It</span>
+                        <span class="word-nl">Het</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">We</span>
+                        <span class="word-nl">Wij</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">They</span>
+                        <span class="word-nl">Zij (meervoud)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vraagwoorden -->
+            <div class="category">
+                <h2><span class="category-icon">❓</span>Vraagwoorden (Question words)</h2>
+                <div class="word-grid">
+                    <div class="word-item">
+                        <span class="word-en">Who</span>
+                        <span class="word-nl">Wie</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">What</span>
+                        <span class="word-nl">Wat</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Where</span>
+                        <span class="word-nl">Waar</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">When</span>
+                        <span class="word-nl">Wanneer</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Why</span>
+                        <span class="word-nl">Waarom</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">How</span>
+                        <span class="word-nl">Hoe</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verbindingswoorden -->
+            <div class="category">
+                <h2><span class="category-icon">🔗</span>Verbindingswoorden (Connecting words)</h2>
+                <div class="word-grid">
+                    <div class="word-item">
+                        <span class="word-en">And</span>
+                        <span class="word-nl">En</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">But</span>
+                        <span class="word-nl">Maar</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Because</span>
+                        <span class="word-nl">Omdat</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Also</span>
+                        <span class="word-nl">Ook</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Then</span>
+                        <span class="word-nl">Toen / Dan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hoeveelheden -->
+            <div class="category">
+                <h2><span class="category-icon">📊</span>Hoeveelheden (Quantities)</h2>
+                <div class="word-grid">
+                    <div class="word-item">
+                        <span class="word-en">Some</span>
+                        <span class="word-nl">Sommige / Wat</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Any</span>
+                        <span class="word-nl">Iets / Enige</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Many</span>
+                        <span class="word-nl">Veel (telbaar)</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Much</span>
+                        <span class="word-nl">Veel (ontelbaar)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tijd en Plaats -->
+            <div class="category">
+                <h2><span class="category-icon">📍</span>Tijd en Plaats (Prepositions)</h2>
+                <div class="word-grid">
+                    <div class="word-item">
+                        <span class="word-en">In</span>
+                        <span class="word-nl">In</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">On</span>
+                        <span class="word-nl">Op</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Under</span>
+                        <span class="word-nl">Onder</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Next to</span>
+                        <span class="word-nl">Naast</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">At</span>
+                        <span class="word-nl">Bij / Aan</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Today</span>
+                        <span class="word-nl">Vandaag</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Tomorrow</span>
+                        <span class="word-nl">Morgen</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Yesterday</span>
+                        <span class="word-nl">Gisteren</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Now</span>
+                        <span class="word-nl">Nu</span>
+                    </div>
+                    <div class="word-item">
+                        <span class="word-en">Later</span>
+                        <span class="word-nl">Later</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tegenstellingen -->
+            <div class="category">
+                <h2><span class="category-icon">↔️</span>Tegenstellingen (Opposites)</h2>
+                <div class="opposites-grid">
+                    <div class="opposite-item">
+                        <span>
+                            <span class="opposite-pair">Big</span>
+                            <span class="opposite-vs">↔</span>
+                            <span class="opposite-pair">Small</span>
+                        </span>
+                        <span class="opposite-nl">Groot ↔ Klein</span>
+                    </div>
+                    <div class="opposite-item">
+                        <span>
+                            <span class="opposite-pair">Happy</span>
+                            <span class="opposite-vs">↔</span>
+                            <span class="opposite-pair">Sad</span>
+                        </span>
+                        <span class="opposite-nl">Blij ↔ Verdrietig</span>
+                    </div>
+                    <div class="opposite-item">
+                        <span>
+                            <span class="opposite-pair">Easy</span>
+                            <span class="opposite-vs">↔</span>
+                            <span class="opposite-pair">Difficult</span>
+                        </span>
+                        <span class="opposite-nl">Makkelijk ↔ Moeilijk</span>
+                    </div>
+                    <div class="opposite-item">
+                        <span>
+                            <span class="opposite-pair">Fast</span>
+                            <span class="opposite-vs">↔</span>
+                            <span class="opposite-pair">Slow</span>
+                        </span>
+                        <span class="opposite-nl">Snel ↔ Langzaam</span>
+                    </div>
+                    <div class="opposite-item">
+                        <span>
+                            <span class="opposite-pair">Cheap</span>
+                            <span class="opposite-vs">↔</span>
+                            <span class="opposite-pair">Expensive</span>
+                        </span>
+                        <span class="opposite-nl">Goedkoop ↔ Duur</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onregelmatige werkwoorden -->
+            <div class="category">
+                <h2><span class="category-icon">📝</span>Onregelmatige werkwoorden</h2>
+                <div class="verb-grid">
+                    <div class="verb-item">
+                        <div class="verb-base">To be</div>
+                        <div class="verb-forms">was/were — been</div>
+                        <div class="verb-nl">zijn</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To have</div>
+                        <div class="verb-forms">had — had</div>
+                        <div class="verb-nl">hebben</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To go</div>
+                        <div class="verb-forms">went — gone</div>
+                        <div class="verb-nl">gaan</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To see</div>
+                        <div class="verb-forms">saw — seen</div>
+                        <div class="verb-nl">zien</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To do</div>
+                        <div class="verb-forms">did — done</div>
+                        <div class="verb-nl">doen</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To eat</div>
+                        <div class="verb-forms">ate — eaten</div>
+                        <div class="verb-nl">eten</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To drink</div>
+                        <div class="verb-forms">drank — drunk</div>
+                        <div class="verb-nl">drinken</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To make</div>
+                        <div class="verb-forms">made — made</div>
+                        <div class="verb-nl">maken</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To write</div>
+                        <div class="verb-forms">wrote — written</div>
+                        <div class="verb-nl">schrijven</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To read</div>
+                        <div class="verb-forms">read — read ⚠️</div>
+                        <div class="verb-nl">lezen (let op uitspraak!)</div>
+                    </div>
+                    <div class="verb-item">
+                        <div class="verb-base">To come</div>
+                        <div class="verb-forms">came — come</div>
+                        <div class="verb-nl">komen</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basiszinnen -->
+            <div class="category">
+                <h2><span class="category-icon">💬</span>Basiszinnen</h2>
+                <ul class="sentence-list">
+                    <li>
+                        <span class="sentence-en">I am...</span>
+                        <span class="sentence-nl">— Ik ben...</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">I have...</span>
+                        <span class="sentence-nl">— Ik heb...</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">I like...</span>
+                        <span class="sentence-nl">— Ik hou van... / Ik vind ... leuk</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">Do you like...?</span>
+                        <span class="sentence-nl">— Hou jij van...? / Vind jij ... leuk?</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">My name is...</span>
+                        <span class="sentence-nl">— Mijn naam is...</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">I live in...</span>
+                        <span class="sentence-nl">— Ik woon in...</span>
+                    </li>
+                    <li>
+                        <span class="sentence-en">I am ... years old.</span>
+                        <span class="sentence-nl">— Ik ben ... jaar oud.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

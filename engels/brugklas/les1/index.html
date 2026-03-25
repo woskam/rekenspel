@@ -57,11 +57,54 @@
             margin-bottom: 20px;
         }
 
-        .no-games {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            color: rgba(255, 255, 255, 0.8);
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: #2d5016;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            display: block;
+        }
+
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-card .game-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .game-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #2d5016;
+        }
+
+        .game-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        .wordlist-card {
+            background: #e8f5e9;
+            border: 2px solid #2d5016;
         }
     </style>
 </head>
@@ -82,9 +125,28 @@
             </div>
 
             <div class="games-section">
-                <h2>Spellen</h2>
-                <div class="no-games">
-                    <p>Spellen worden binnenkort toegevoegd</p>
+                <h2>Leren</h2>
+                <div class="games-grid">
+                    <a href="woordenlijst.html" class="game-card wordlist-card">
+                        <div class="game-icon">📚</div>
+                        <h3>Woordenlijst</h3>
+                        <p>Bekijk alle woorden en zinnen</p>
+                    </a>
+                    <a href="flashcards.html" class="game-card">
+                        <div class="game-icon">🎴</div>
+                        <h3>Flashcards</h3>
+                        <p>Oefen met omdraaien</p>
+                    </a>
+                    <a href="multiple-choice.html" class="game-card">
+                        <div class="game-icon">🎯</div>
+                        <h3>Multiple Choice</h3>
+                        <p>Kies de juiste vertaling</p>
+                    </a>
+                    <a href="memory.html" class="game-card">
+                        <div class="game-icon">🧠</div>
+                        <h3>Memory</h3>
+                        <p>Match NL en EN woorden</p>
+                    </a>
                 </div>
             </div>
         </div>

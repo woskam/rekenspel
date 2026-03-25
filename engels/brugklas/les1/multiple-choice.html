@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice - Les 1 Introductie</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .lesson-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .lesson-container h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-container .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .category-select {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-select label {
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .category-select select {
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: #2d5016;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .question-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-label {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .question-word {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .question-hint {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: white;
+            color: #2d5016;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #2d5016;
+            transform: translateY(-2px);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #155724;
+            color: #155724;
+        }
+
+        .option-btn.incorrect {
+            background: #f8d7da;
+            border-color: #721c24;
+            color: #721c24;
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        .next-btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .next-btn.show {
+            display: inline-block;
+        }
+
+        .stats {
+            color: white;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .results-screen {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .results-screen h2 {
+            color: #2d5016;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .results-screen .score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #2d5016;
+            margin: 20px 0;
+        }
+
+        .results-screen p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .play-again-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Les 1</a>
+        <div class="lesson-container">
+            <h1>Multiple Choice</h1>
+            <p class="subtitle">Kies de juiste vertaling</p>
+
+            <div class="category-select">
+                <label for="category">Categorie:</label>
+                <select id="category" onchange="startGame()">
+                    <option value="all">Alle woorden</option>
+                    <option value="pronouns">Voornaamwoorden</option>
+                    <option value="questions">Vraagwoorden</option>
+                    <option value="connecting">Verbindingswoorden</option>
+                    <option value="prepositions">Tijd en Plaats</option>
+                    <option value="opposites">Tegenstellingen</option>
+                    <option value="verbs">Werkwoorden</option>
+                </select>
+            </div>
+
+            <div id="gameArea">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-label">Wat is de Engelse vertaling van:</div>
+                    <div class="question-word" id="questionWord">Loading...</div>
+                    <div class="question-hint" id="questionHint"></div>
+                </div>
+
+                <div class="options-grid" id="optionsGrid"></div>
+
+                <div class="feedback" id="feedback"></div>
+
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Volgende →</button>
+
+                <div class="stats">
+                    <div class="stat-item">Vraag: <span id="currentQ">1</span>/<span id="totalQ">10</span></div>
+                    <div class="stat-item">Score: <span id="score">0</span></div>
+                </div>
+            </div>
+
+            <div class="results-screen" id="resultsScreen">
+                <h2>Klaar!</h2>
+                <div class="score"><span id="finalScore">0</span>%</div>
+                <p><span id="finalCorrect">0</span> goed van de <span id="finalTotal">10</span> vragen</p>
+                <button class="play-again-btn" onclick="startGame()">Opnieuw spelen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wordData = {
+            pronouns: [
+                { en: "I", nl: "Ik" },
+                { en: "You", nl: "Jij" },
+                { en: "He", nl: "Hij" },
+                { en: "She", nl: "Zij" },
+                { en: "It", nl: "Het" },
+                { en: "We", nl: "Wij" },
+                { en: "They", nl: "Zij (meervoud)" }
+            ],
+            questions: [
+                { en: "Who", nl: "Wie" },
+                { en: "What", nl: "Wat" },
+                { en: "Where", nl: "Waar" },
+                { en: "When", nl: "Wanneer" },
+                { en: "Why", nl: "Waarom" },
+                { en: "How", nl: "Hoe" }
+            ],
+            connecting: [
+                { en: "And", nl: "En" },
+                { en: "But", nl: "Maar" },
+                { en: "Because", nl: "Omdat" },
+                { en: "Also", nl: "Ook" },
+                { en: "Then", nl: "Dan" }
+            ],
+            prepositions: [
+                { en: "In", nl: "In" },
+                { en: "On", nl: "Op" },
+                { en: "Under", nl: "Onder" },
+                { en: "Next to", nl: "Naast" },
+                { en: "At", nl: "Bij" },
+                { en: "Today", nl: "Vandaag" },
+                { en: "Tomorrow", nl: "Morgen" },
+                { en: "Yesterday", nl: "Gisteren" },
+                { en: "Now", nl: "Nu" },
+                { en: "Later", nl: "Later" }
+            ],
+            opposites: [
+                { en: "Big", nl: "Groot" },
+                { en: "Small", nl: "Klein" },
+                { en: "Happy", nl: "Blij" },
+                { en: "Sad", nl: "Verdrietig" },
+                { en: "Easy", nl: "Makkelijk" },
+                { en: "Difficult", nl: "Moeilijk" },
+                { en: "Fast", nl: "Snel" },
+                { en: "Slow", nl: "Langzaam" },
+                { en: "Cheap", nl: "Goedkoop" },
+                { en: "Expensive", nl: "Duur" }
+            ],
+            verbs: [
+                { en: "To be", nl: "zijn" },
+                { en: "To have", nl: "hebben" },
+                { en: "To go", nl: "gaan" },
+                { en: "To see", nl: "zien" },
+                { en: "To do", nl: "doen" },
+                { en: "To eat", nl: "eten" },
+                { en: "To drink", nl: "drinken" },
+                { en: "To make", nl: "maken" },
+                { en: "To write", nl: "schrijven" },
+                { en: "To read", nl: "lezen" },
+                { en: "To come", nl: "komen" }
+            ]
+        };
+
+        let allWords = [];
+        let questions = [];
+        let currentQuestion = 0;
+        let score = 0;
+        let totalQuestions = 10;
+        let answered = false;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startGame() {
+            const category = document.getElementById('category').value;
+
+            if (category === 'all') {
+                allWords = [];
+                Object.values(wordData).forEach(words => {
+                    allWords = allWords.concat(words);
+                });
+            } else {
+                allWords = [...wordData[category]];
+            }
+
+            shuffle(allWords);
+            questions = allWords.slice(0, Math.min(totalQuestions, allWords.length));
+            totalQuestions = questions.length;
+
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+
+            document.getElementById('score').textContent = '0';
+            document.getElementById('totalQ').textContent = totalQuestions;
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('gameArea').style.display = 'block';
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            answered = false;
+            const q = questions[currentQuestion];
+
+            document.getElementById('questionWord').textContent = q.nl;
+            document.getElementById('questionHint').textContent = '';
+            document.getElementById('currentQ').textContent = currentQuestion + 1;
+            document.getElementById('progressFill').style.width = ((currentQuestion) / totalQuestions * 100) + '%';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('nextBtn').classList.remove('show');
+
+            // Generate options
+            const correctAnswer = q.en;
+            let options = [correctAnswer];
+
+            // Get wrong answers from same category or all words
+            const otherWords = allWords.filter(w => w.en !== correctAnswer);
+            shuffle(otherWords);
+
+            for (let i = 0; i < 3 && i < otherWords.length; i++) {
+                options.push(otherWords[i].en);
+            }
+
+            shuffle(options);
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(btn, option, correctAnswer);
+                grid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(btn, selected, correct) {
+            if (answered) return;
+            answered = true;
+
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b.textContent === correct) {
+                    b.classList.add('correct');
+                }
+            });
+
+            const feedback = document.getElementById('feedback');
+
+            if (selected === correct) {
+                score++;
+                document.getElementById('score').textContent = score;
+                feedback.textContent = 'Goed! ✓';
+                feedback.className = 'feedback correct';
+            } else {
+                btn.classList.add('incorrect');
+                feedback.textContent = `Fout! Het juiste antwoord is: ${correct}`;
+                feedback.className = 'feedback incorrect';
+            }
+
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('gameArea').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            const percentage = Math.round((score / totalQuestions) * 100);
+            document.getElementById('finalScore').textContent = percentage;
+            document.getElementById('finalCorrect').textContent = score;
+            document.getElementById('finalTotal').textContent = totalQuestions;
+        }
+
+        // Initialize
+        startGame();
+    </script>
+</body>
+</html>

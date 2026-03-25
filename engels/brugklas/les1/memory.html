@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory - Les 1 Introductie</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .lesson-container {
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .lesson-container h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-container .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .category-select {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-select label {
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .category-select select {
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: #2d5016;
+            cursor: pointer;
+        }
+
+        .stats {
+            color: white;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .memory-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #3a6b1f 0%, #2d5016 100%);
+            border: 3px solid white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px;
+            transition: all 0.3s;
+            user-select: none;
+            color: white;
+            position: relative;
+        }
+
+        .memory-card:hover:not(.matched):not(.flipped) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-card .card-back {
+            font-size: 2em;
+        }
+
+        .memory-card .card-front {
+            display: none;
+        }
+
+        .memory-card.flipped {
+            background: white;
+            color: #2d5016;
+        }
+
+        .memory-card.flipped .card-back {
+            display: none;
+        }
+
+        .memory-card.flipped .card-front {
+            display: block;
+        }
+
+        .memory-card.matched {
+            background: #d4edda;
+            border-color: #155724;
+            color: #155724;
+            cursor: default;
+        }
+
+        .memory-card.matched .card-back {
+            display: none;
+        }
+
+        .memory-card.matched .card-front {
+            display: block;
+        }
+
+        .memory-card.en-card {
+            font-style: normal;
+        }
+
+        .memory-card.nl-card {
+            font-style: italic;
+        }
+
+        .results-screen {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .results-screen h2 {
+            color: #2d5016;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .results-screen p {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .results-screen .score {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2d5016;
+            margin: 20px 0;
+        }
+
+        .play-again-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Les 1</a>
+        <div class="lesson-container">
+            <h1>Memory</h1>
+            <p class="subtitle">Match de Nederlandse en Engelse woorden</p>
+
+            <div class="category-select">
+                <label for="category">Categorie:</label>
+                <select id="category" onchange="startGame()">
+                    <option value="pronouns">Voornaamwoorden</option>
+                    <option value="questions">Vraagwoorden</option>
+                    <option value="connecting">Verbindingswoorden</option>
+                    <option value="prepositions">Tijd en Plaats</option>
+                    <option value="opposites">Tegenstellingen</option>
+                    <option value="verbs">Werkwoorden</option>
+                </select>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">Paren: <span id="pairsFound">0</span>/<span id="totalPairs">0</span></div>
+                <div class="stat-item">Pogingen: <span id="attempts">0</span></div>
+            </div>
+
+            <div class="memory-grid" id="memoryGrid"></div>
+
+            <div class="results-screen" id="resultsScreen">
+                <h2>Gewonnen!</h2>
+                <p>Je hebt alle paren gevonden!</p>
+                <div class="score"><span id="finalAttempts">0</span> pogingen</div>
+                <button class="play-again-btn" onclick="startGame()">Opnieuw spelen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wordData = {
+            pronouns: [
+                { en: "I", nl: "Ik" },
+                { en: "You", nl: "Jij" },
+                { en: "He", nl: "Hij" },
+                { en: "She", nl: "Zij" },
+                { en: "It", nl: "Het" },
+                { en: "We", nl: "Wij" }
+            ],
+            questions: [
+                { en: "Who", nl: "Wie" },
+                { en: "What", nl: "Wat" },
+                { en: "Where", nl: "Waar" },
+                { en: "When", nl: "Wanneer" },
+                { en: "Why", nl: "Waarom" },
+                { en: "How", nl: "Hoe" }
+            ],
+            connecting: [
+                { en: "And", nl: "En" },
+                { en: "But", nl: "Maar" },
+                { en: "Because", nl: "Omdat" },
+                { en: "Also", nl: "Ook" },
+                { en: "Then", nl: "Dan" }
+            ],
+            prepositions: [
+                { en: "In", nl: "In" },
+                { en: "On", nl: "Op" },
+                { en: "Under", nl: "Onder" },
+                { en: "Today", nl: "Vandaag" },
+                { en: "Tomorrow", nl: "Morgen" },
+                { en: "Yesterday", nl: "Gisteren" }
+            ],
+            opposites: [
+                { en: "Big", nl: "Groot" },
+                { en: "Small", nl: "Klein" },
+                { en: "Happy", nl: "Blij" },
+                { en: "Sad", nl: "Verdrietig" },
+                { en: "Fast", nl: "Snel" },
+                { en: "Slow", nl: "Langzaam" }
+            ],
+            verbs: [
+                { en: "To be", nl: "zijn" },
+                { en: "To have", nl: "hebben" },
+                { en: "To go", nl: "gaan" },
+                { en: "To see", nl: "zien" },
+                { en: "To do", nl: "doen" },
+                { en: "To eat", nl: "eten" }
+            ]
+        };
+
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let totalPairs = 0;
+        let attempts = 0;
+        let isChecking = false;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startGame() {
+            const category = document.getElementById('category').value;
+            const words = wordData[category];
+
+            // Take 6 pairs max for a good grid
+            const selectedWords = words.slice(0, 6);
+            totalPairs = selectedWords.length;
+
+            // Create card pairs
+            cards = [];
+            selectedWords.forEach((word, index) => {
+                cards.push({ id: index, type: 'en', text: word.en, pairId: index });
+                cards.push({ id: index, type: 'nl', text: word.nl, pairId: index });
+            });
+
+            shuffle(cards);
+
+            matchedPairs = 0;
+            attempts = 0;
+            flippedCards = [];
+            isChecking = false;
+
+            document.getElementById('pairsFound').textContent = '0';
+            document.getElementById('totalPairs').textContent = totalPairs;
+            document.getElementById('attempts').textContent = '0';
+            document.getElementById('resultsScreen').style.display = 'none';
+
+            renderGrid();
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+
+            cards.forEach((card, index) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = `memory-card ${card.type}-card`;
+                cardEl.dataset.index = index;
+                cardEl.innerHTML = `
+                    <span class="card-back">?</span>
+                    <span class="card-front">${card.text}</span>
+                `;
+                cardEl.onclick = () => flipCard(index);
+                grid.appendChild(cardEl);
+            });
+        }
+
+        function flipCard(index) {
+            if (isChecking) return;
+
+            const cardEl = document.querySelectorAll('.memory-card')[index];
+            const card = cards[index];
+
+            // Don't flip if already flipped or matched
+            if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) {
+                return;
+            }
+
+            // Don't flip more than 2 cards
+            if (flippedCards.length >= 2) {
+                return;
+            }
+
+            cardEl.classList.add('flipped');
+            flippedCards.push({ index, card, element: cardEl });
+
+            if (flippedCards.length === 2) {
+                attempts++;
+                document.getElementById('attempts').textContent = attempts;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            isChecking = true;
+            const [first, second] = flippedCards;
+
+            // Check if same pair and different types (en vs nl)
+            if (first.card.pairId === second.card.pairId && first.card.type !== second.card.type) {
+                // Match!
+                setTimeout(() => {
+                    first.element.classList.add('matched');
+                    second.element.classList.add('matched');
+                    matchedPairs++;
+                    document.getElementById('pairsFound').textContent = matchedPairs;
+
+                    flippedCards = [];
+                    isChecking = false;
+
+                    if (matchedPairs === totalPairs) {
+                        showResults();
+                    }
+                }, 500);
+            } else {
+                // No match
+                setTimeout(() => {
+                    first.element.classList.remove('flipped');
+                    second.element.classList.remove('flipped');
+                    flippedCards = [];
+                    isChecking = false;
+                }, 1000);
+            }
+        }
+
+        function showResults() {
+            setTimeout(() => {
+                document.getElementById('resultsScreen').style.display = 'block';
+                document.getElementById('finalAttempts').textContent = attempts;
+            }, 500);
+        }
+
+        // Initialize
+        startGame();
+    </script>
+</body>
+</html>

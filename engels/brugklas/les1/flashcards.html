@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - Les 1 Introductie</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .lesson-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .lesson-container h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-container .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .category-select {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-select label {
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .category-select select {
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: #2d5016;
+            cursor: pointer;
+        }
+
+        .progress-info {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            margin-bottom: 30px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .flashcard-front {
+            background: white;
+        }
+
+        .flashcard-back {
+            background: #2d5016;
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-word {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2d5016;
+        }
+
+        .flashcard-back .flashcard-word {
+            color: white;
+        }
+
+        .flashcard-hint {
+            font-size: 1em;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        .flashcard-back .flashcard-hint {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tap-hint {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-wrong {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-correct {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .btn-next {
+            background: white;
+            color: #2d5016;
+        }
+
+        .stats {
+            margin-top: 20px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .results-screen {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .results-screen h2 {
+            color: #2d5016;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .results-screen p {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .results-screen .score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #2d5016;
+            margin: 20px 0;
+        }
+
+        .play-again-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="index.html" class="back-link">← Terug naar Les 1</a>
+        <div class="lesson-container">
+            <h1>Flashcards</h1>
+            <p class="subtitle">Klik op de kaart om de vertaling te zien</p>
+
+            <div class="category-select">
+                <label for="category">Categorie:</label>
+                <select id="category" onchange="loadCategory()">
+                    <option value="all">Alle woorden</option>
+                    <option value="pronouns">Voornaamwoorden</option>
+                    <option value="questions">Vraagwoorden</option>
+                    <option value="connecting">Verbindingswoorden</option>
+                    <option value="prepositions">Tijd en Plaats</option>
+                    <option value="opposites">Tegenstellingen</option>
+                    <option value="verbs">Werkwoorden</option>
+                </select>
+            </div>
+
+            <div class="progress-info">
+                Kaart <span id="current">1</span> van <span id="total">0</span>
+            </div>
+
+            <div class="flashcard-container" id="flashcardContainer">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-front">
+                        <div class="flashcard-word" id="frontWord">Loading...</div>
+                        <div class="flashcard-hint" id="frontHint"></div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-word" id="backWord">Loading...</div>
+                        <div class="flashcard-hint" id="backHint"></div>
+                    </div>
+                </div>
+                <p class="tap-hint">Tik op de kaart om om te draaien</p>
+            </div>
+
+            <div class="controls" id="controls">
+                <button class="control-btn btn-wrong" onclick="markWrong()">✗ Niet goed</button>
+                <button class="control-btn btn-correct" onclick="markCorrect()">✓ Goed!</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">Goed: <span id="correctCount">0</span></div>
+                <div class="stat-item">Fout: <span id="wrongCount">0</span></div>
+            </div>
+
+            <div class="results-screen" id="resultsScreen">
+                <h2>Goed gedaan!</h2>
+                <p>Je hebt alle kaarten gehad</p>
+                <div class="score"><span id="finalScore">0</span>%</div>
+                <p><span id="finalCorrect">0</span> goed van de <span id="finalTotal">0</span></p>
+                <button class="play-again-btn" onclick="restart()">Opnieuw spelen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wordData = {
+            pronouns: [
+                { en: "I", nl: "Ik" },
+                { en: "You", nl: "Jij / Je" },
+                { en: "He", nl: "Hij" },
+                { en: "She", nl: "Zij (vrouw)" },
+                { en: "It", nl: "Het" },
+                { en: "We", nl: "Wij" },
+                { en: "They", nl: "Zij (meervoud)" }
+            ],
+            questions: [
+                { en: "Who", nl: "Wie" },
+                { en: "What", nl: "Wat" },
+                { en: "Where", nl: "Waar" },
+                { en: "When", nl: "Wanneer" },
+                { en: "Why", nl: "Waarom" },
+                { en: "How", nl: "Hoe" }
+            ],
+            connecting: [
+                { en: "And", nl: "En" },
+                { en: "But", nl: "Maar" },
+                { en: "Because", nl: "Omdat" },
+                { en: "Also", nl: "Ook" },
+                { en: "Then", nl: "Toen / Dan" }
+            ],
+            prepositions: [
+                { en: "In", nl: "In" },
+                { en: "On", nl: "Op" },
+                { en: "Under", nl: "Onder" },
+                { en: "Next to", nl: "Naast" },
+                { en: "At", nl: "Bij / Aan" },
+                { en: "Today", nl: "Vandaag" },
+                { en: "Tomorrow", nl: "Morgen" },
+                { en: "Yesterday", nl: "Gisteren" },
+                { en: "Now", nl: "Nu" },
+                { en: "Later", nl: "Later" }
+            ],
+            opposites: [
+                { en: "Big", nl: "Groot" },
+                { en: "Small", nl: "Klein" },
+                { en: "Happy", nl: "Blij" },
+                { en: "Sad", nl: "Verdrietig" },
+                { en: "Easy", nl: "Makkelijk" },
+                { en: "Difficult", nl: "Moeilijk" },
+                { en: "Fast", nl: "Snel" },
+                { en: "Slow", nl: "Langzaam" },
+                { en: "Cheap", nl: "Goedkoop" },
+                { en: "Expensive", nl: "Duur" }
+            ],
+            verbs: [
+                { en: "To be", nl: "zijn", hint: "was/were - been" },
+                { en: "To have", nl: "hebben", hint: "had - had" },
+                { en: "To go", nl: "gaan", hint: "went - gone" },
+                { en: "To see", nl: "zien", hint: "saw - seen" },
+                { en: "To do", nl: "doen", hint: "did - done" },
+                { en: "To eat", nl: "eten", hint: "ate - eaten" },
+                { en: "To drink", nl: "drinken", hint: "drank - drunk" },
+                { en: "To make", nl: "maken", hint: "made - made" },
+                { en: "To write", nl: "schrijven", hint: "wrote - written" },
+                { en: "To read", nl: "lezen", hint: "read - read" },
+                { en: "To come", nl: "komen", hint: "came - come" }
+            ]
+        };
+
+        let currentCards = [];
+        let currentIndex = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+        let isFlipped = false;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function loadCategory() {
+            const category = document.getElementById('category').value;
+
+            if (category === 'all') {
+                currentCards = [];
+                Object.values(wordData).forEach(words => {
+                    currentCards = currentCards.concat(words);
+                });
+            } else {
+                currentCards = [...wordData[category]];
+            }
+
+            shuffle(currentCards);
+            currentIndex = 0;
+            correctCount = 0;
+            wrongCount = 0;
+            isFlipped = false;
+
+            document.getElementById('correctCount').textContent = '0';
+            document.getElementById('wrongCount').textContent = '0';
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('flashcardContainer').style.display = 'block';
+            document.getElementById('controls').style.display = 'flex';
+
+            showCard();
+        }
+
+        function showCard() {
+            if (currentIndex >= currentCards.length) {
+                showResults();
+                return;
+            }
+
+            const card = currentCards[currentIndex];
+            document.getElementById('frontWord').textContent = card.nl;
+            document.getElementById('frontHint').textContent = '';
+            document.getElementById('backWord').textContent = card.en;
+            document.getElementById('backHint').textContent = card.hint || '';
+
+            document.getElementById('current').textContent = currentIndex + 1;
+            document.getElementById('total').textContent = currentCards.length;
+
+            document.getElementById('flashcard').classList.remove('flipped');
+            isFlipped = false;
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function markCorrect() {
+            correctCount++;
+            document.getElementById('correctCount').textContent = correctCount;
+            nextCard();
+        }
+
+        function markWrong() {
+            wrongCount++;
+            document.getElementById('wrongCount').textContent = wrongCount;
+            // Add to end of deck to practice again
+            currentCards.push(currentCards[currentIndex]);
+            document.getElementById('total').textContent = currentCards.length;
+            nextCard();
+        }
+
+        function nextCard() {
+            currentIndex++;
+            showCard();
+        }
+
+        function showResults() {
+            document.getElementById('flashcardContainer').style.display = 'none';
+            document.getElementById('controls').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            const total = correctCount + wrongCount;
+            const percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+            document.getElementById('finalScore').textContent = percentage;
+            document.getElementById('finalCorrect').textContent = correctCount;
+            document.getElementById('finalTotal').textContent = total;
+        }
+
+        function restart() {
+            loadCategory();
+        }
+
+        // Initialize
+        loadCategory();
+    </script>
+</body>
+</html>
