@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArtGames · Engels oefenen voor kinderen</title>
+<meta name="description" content="ArtGames: Engels oefenen voor groep 4 tot en met de brugklas. Zonder internet, account of advertenties.">
+<link rel="icon" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<style>
+:root {
+  --blue: #2f7fe8; --green: #3fae6b; --orange: #f39a2b;
+  --ink: #17242c; --muted: #56656d; --line: #e2e9e6; --bg: #f6f9f8; --card: #ffffff;
+  --brand: linear-gradient(135deg, #3392f5 0%, #65cf8a 55%, #feae42 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #eaf1f3; --muted: #a3b2b8; --line: #2a3841; --bg: #10171c; --card: #18222a; --blue: #6aa8ff; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 17px/1.6 ui-rounded, "SF Pro Rounded", -apple-system, system-ui, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+a { color: var(--blue); }
+.hero { background: var(--brand); color: #fff; padding: 56px 20px 64px; text-align: center; }
+.hero img.icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 10px 30px rgba(10,40,80,.25); }
+.hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 18px 0 6px; line-height: 1.1; }
+.hero p { font-size: 1.15rem; margin: 0 auto; max-width: 34ch; opacity: .95; }
+.store { display: inline-block; margin-top: 24px; background: #111; color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 12px; font-weight: 600; }
+main { max-width: 880px; margin: 0 auto; padding: 40px 20px 64px; display: grid; gap: 48px; }
+h2 { font-size: 1.5rem; margin: 0 0 12px; }
+.shots { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.shots img { width: min(240px, 30%); min-width: 160px; height: auto; border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
+.points li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+.points b { display: block; margin-bottom: 2px; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; }
+details + details { margin-top: 10px; }
+summary { font-weight: 600; cursor: pointer; }
+details p, details ul { margin: 10px 0 0; color: var(--muted); }
+.contact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
+footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 40px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <img class="icon" src="img/icon.png" alt="ArtGames-icoon: blauwe praatwolk met Hi! en een gouden kroon">
+  <h1>ArtGames</h1>
+  <p>Engels oefenen voor groep 4 tot en met de brugklas. Zonder internet, account of advertenties.</p>
+  <!-- Zet hier na goedkeuring de App Store-link neer, bv. https://apps.apple.com/nl/app/idXXXXXXXXX -->
+  <a class="store" href="#contact">Binnenkort in de App Store</a>
+</header>
+
+<main>
+  <section class="shots" aria-label="Schermafbeeldingen">
+    <img src="img/01-home.jpg" alt="Het leerpad met de knop Verder" loading="lazy">
+    <img src="img/03-speak.jpg" alt="Spreek na-oefening met microfoonknop" loading="lazy">
+    <img src="img/05-story.jpg" alt="Een Engels mini-verhaaltje om voor te lezen" loading="lazy">
+  </section>
+
+  <section>
+    <h2>Wat kan je kind ermee?</h2>
+    <ul class="points">
+      <li><b>Luisteren en nazeggen</b>Elk woord hoor je gewoon of extra langzaam, en je zegt het daarna hardop na.</li>
+      <li><b>Slimme herhaling</b>Woorden die nog lastig zijn komen vanzelf terug tot ze blijven hangen.</li>
+      <li><b>Eerste verhaaltjes</b>Elk hoofdstuk eindigt met een kort verhaal. Tik op een woord om het te horen.</li>
+      <li><b>Per kind een eigen niveau</b>Van groep 4 tot de brugklas, met een eigen profiel voor elk kind.</li>
+      <li><b>Volledig offline</b>Geen internet, geen account en geen advertenties of aankopen in de app.</li>
+      <li><b>Inzicht voor ouders</b>Zie per kind de voortgang en stel een weekdoel in.</li>
+    </ul>
+  </section>
+
+  <section id="vragen">
+    <h2>Veelgestelde vragen</h2>
+    <details>
+      <summary>De microfoon of "Spreek na!" werkt niet</summary>
+      <p>Controleer of ArtGames toegang heeft tot de microfoon en spraakherkenning:</p>
+      <ul>
+        <li>Instellingen › Privacy en beveiliging › Microfoon › ArtGames aan</li>
+        <li>Instellingen › Privacy en beveiliging › Spraakherkenning › ArtGames aan</li>
+        <li>In de app: tandwiel › Microfoon (Spreek na!) aan</li>
+      </ul>
+      <p>Spraakherkenning draait op het apparaat zelf. Op sommige oudere iPhones en iPads is dat voor het Engels niet beschikbaar; de app laat dat dan zien. Met de knop "Nu even niet praten" sla je de oefening over.</p>
+    </details>
+    <details>
+      <summary>Hoe wissel ik van kind of van niveau?</summary>
+      <p>Tik linksboven op de naam van het kind. In dat menu kies je een ander niveau of "Wissel van profiel".</p>
+    </details>
+    <details>
+      <summary>Hoe verwijder ik een profiel of begin ik opnieuw?</summary>
+      <p>Tik op het tandwiel rechtsboven. Onder "Kinderprofielen" kun je de voortgang van een kind resetten of het profiel verwijderen.</p>
+    </details>
+    <details>
+      <summary>Neem ik de voortgang mee naar een nieuwe iPhone of iPad?</summary>
+      <p>De voortgang staat alleen op het apparaat. Zet je een nieuw apparaat over met een iCloud-reservekopie of Snelle start, dan gaat de voortgang mee.</p>
+    </details>
+    <details>
+      <summary>Kost de app iets of zitten er advertenties in?</summary>
+      <p>Er zitten geen advertenties en geen aankopen in de app.</p>
+    </details>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact en hulp</h2>
+    <p>Werkt er iets niet, of heb je een idee voor een nieuwe les? Mail naar <a href="mailto:wychert@gmail.com">wychert@gmail.com</a>. Je krijgt meestal binnen een paar dagen antwoord.</p>
+    <p><a href="privacy.html">Privacybeleid</a></p>
+  </section>
+</main>
+
+<footer>© 2026 Wychert Oskam · <a href="../">ArtGames</a></footer>
+</body>
+</html>
