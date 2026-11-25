@@ -4,106 +4,362 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ArtGames · Engels oefenen voor kinderen</title>
-<meta name="description" content="ArtGames: Engels oefenen voor groep 4 tot en met de brugklas. Zonder internet, account of advertenties.">
+<meta name="description" content="ArtGames: Engels oefenen voor groep 4 tot en met de brugklas. Luisteren, nazeggen en lezen in korte lessen. Gratis, zonder internet, account of advertenties.">
+<meta property="og:title" content="ArtGames · Engels oefenen voor kinderen">
+<meta property="og:description" content="Korte, speelse Engelse lessen voor groep 4 tot en met de brugklas. Veilig, gratis en zonder advertenties.">
+<meta property="og:image" content="https://artgames.nl/app/img/icon.png">
 <link rel="icon" href="img/icon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
 <style>
 :root {
-  --blue: #2f7fe8; --green: #3fae6b; --orange: #f39a2b;
-  --ink: #17242c; --muted: #56656d; --line: #e2e9e6; --bg: #f6f9f8; --card: #ffffff;
+  --blue: #2f7fe8; --green: #3fae6b; --orange: #f39a2b; --purple: #6a5cf0; --pink: #ec5f9b;
+  --ink: #15222a; --muted: #56656d; --line: #e3ebe8; --bg: #f7faf9; --card: #ffffff; --soft: #eef5ff;
   --brand: linear-gradient(135deg, #3392f5 0%, #65cf8a 55%, #feae42 100%);
+  --radius: 22px;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --ink: #eaf1f3; --muted: #a3b2b8; --line: #2a3841; --bg: #10171c; --card: #18222a; --blue: #6aa8ff; }
+  :root { --ink: #eaf1f3; --muted: #a3b2b8; --line: #26343d; --bg: #0e151a; --card: #16212a; --soft: #142334; --blue: #6aa8ff; }
 }
 * { box-sizing: border-box; }
-body { margin: 0; font: 17px/1.6 ui-rounded, "SF Pro Rounded", -apple-system, system-ui, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+html { scroll-behavior: smooth; }
+body { margin: 0; font: 17px/1.6 ui-rounded, "SF Pro Rounded", -apple-system, system-ui, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
 a { color: var(--blue); }
-.hero { background: var(--brand); color: #fff; padding: 56px 20px 64px; text-align: center; }
-.hero img.icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 10px 30px rgba(10,40,80,.25); }
-.hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 18px 0 6px; line-height: 1.1; }
-.hero p { font-size: 1.15rem; margin: 0 auto; max-width: 34ch; opacity: .95; }
-.store { display: inline-block; margin-top: 24px; background: #111; color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 12px; font-weight: 600; }
-main { max-width: 880px; margin: 0 auto; padding: 40px 20px 64px; display: grid; gap: 48px; }
-h2 { font-size: 1.5rem; margin: 0 0 12px; }
-.shots { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.shots img { width: min(240px, 30%); min-width: 160px; height: auto; border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-.points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
-.points li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
-.points b { display: block; margin-bottom: 2px; }
-details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* Navigatie */
+.nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 78%, transparent); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+.logo img { width: 34px; height: 34px; border-radius: 9px; }
+.nav-links { display: flex; gap: 22px; align-items: center; }
+.nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: .95rem; }
+.nav-links a:hover { color: var(--ink); }
+@media (max-width: 640px) { .nav-links .hide-sm { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--brand); color: #fff; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -1px -10%; height: 90px; background: var(--bg); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; padding-top: 64px; padding-bottom: 110px; }
+.hero h1 { font-size: clamp(2.3rem, 5.4vw, 3.9rem); line-height: 1.04; letter-spacing: -.025em; margin: 18px 0 16px; text-shadow: 0 2px 18px rgba(10,40,80,.18); }
+.hero p.lead { font-size: 1.2rem; margin: 0 0 26px; max-width: 32ch; opacity: .96; }
+.app-id { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); padding: 6px 14px 6px 6px; border-radius: 999px; font-weight: 700; }
+.app-id img { width: 36px; height: 36px; border-radius: 9px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.store { display: inline-flex; align-items: center; gap: 10px; background: #0b0f12; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 14px; font-weight: 700; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+.store svg { width: 22px; height: 22px; fill: #fff; }
+.store small { display: block; font-weight: 500; font-size: .72rem; opacity: .8; line-height: 1; }
+.ghost { color: #fff; font-weight: 700; text-decoration: none; padding: 12px 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; padding: 0; list-style: none; }
+.chips li { background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.32); border-radius: 999px; padding: 5px 12px; font-size: .9rem; font-weight: 600; }
+.hero-phones { position: relative; height: 560px; }
+.hero-phones .phone { position: absolute; width: 250px; }
+.hero-phones .p1 { left: 8%; top: 10px; transform: rotate(-6deg); }
+.hero-phones .p2 { right: 4%; top: 70px; transform: rotate(5deg); }
+.bubble { position: absolute; background: #fff; color: #15222a; font-weight: 800; padding: 8px 14px; border-radius: 16px; box-shadow: 0 10px 24px rgba(10,40,80,.2); font-size: 1rem; z-index: 2; }
+.bubble::after { content: ""; position: absolute; bottom: -7px; left: 18px; border: 8px solid transparent; border-top-color: #fff; border-bottom: 0; }
+.b1 { left: 0; top: 40px; } .b2 { right: 0; top: 10px; background: #ffd25e; } .b2::after { border-top-color: #ffd25e; } .b3 { left: 30%; bottom: 20px; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; text-align: center; padding-top: 44px; }
+  .hero p.lead { margin-left: auto; margin-right: auto; }
+  .cta, .chips { justify-content: center; }
+  .hero-phones { height: 420px; max-width: 420px; margin: 0 auto; width: 100%; }
+  .hero-phones .phone { width: 190px; }
+}
+
+/* Telefoon-frame */
+.phone { background: #0b0f12; border-radius: 40px; padding: 9px; box-shadow: 0 30px 60px rgba(10,30,60,.28), 0 2px 0 rgba(255,255,255,.08) inset; }
+.phone img { border-radius: 32px; width: 100%; height: auto; }
+
+/* Secties */
+section { padding: 72px 0; }
+.eyebrow { display: inline-block; font-weight: 800; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 14px; }
+.intro { color: var(--muted); font-size: 1.1rem; max-width: 60ch; margin: 0 0 36px; }
+.center { text-align: center; } .center .intro { margin-left: auto; margin-right: auto; }
+
+/* Cijfers */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: -40px; position: relative; z-index: 2; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(10,40,80,.06); }
+.stat b { display: block; font-size: 2rem; line-height: 1.1; letter-spacing: -.02em; background: var(--brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat span { color: var(--muted); font-weight: 600; font-size: .95rem; }
+@media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* Stappen */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+.step .phone { border-radius: 30px; padding: 7px; box-shadow: 0 14px 30px rgba(10,30,60,.16); }
+.step .phone img { border-radius: 24px; aspect-ratio: 1320/1700; object-fit: cover; object-position: top; }
+.step h3 { margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+.num { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: .9rem; }
+.step p { margin: 0; color: var(--muted); font-size: .98rem; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } .step .phone { max-width: 260px; margin: 0 auto; } }
+
+/* Leerpad */
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.level { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+.level header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.level h3 { margin: 0; font-size: 1.2rem; }
+.level header span { color: var(--muted); font-size: .88rem; font-weight: 600; }
+.level ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.level li { background: var(--soft); border-radius: 999px; padding: 4px 10px; font-size: .88rem; }
+.level .bar { height: 6px; border-radius: 6px; background: var(--brand); margin-bottom: 14px; }
+@media (max-width: 900px) { .levels { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .levels { grid-template-columns: 1fr; } }
+.extra { margin-top: 18px; color: var(--muted); }
+
+/* Oefenvormen */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.split.rev > :first-child { order: 2; }
+@media (max-width: 860px) { .split, .split.rev { grid-template-columns: 1fr; gap: 32px; } .split.rev > :first-child { order: 0; } }
+.duo { display: flex; gap: 18px; justify-content: center; align-items: flex-start; }
+.duo .phone { width: min(46%, 240px); }
+.duo .phone:nth-child(2) { margin-top: 48px; }
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.list li { display: flex; gap: 12px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; }
+.list li > span:first-child { font-size: 1.3rem; line-height: 1.3; }
+.list b { display: block; }
+.list small { color: var(--muted); font-size: .92rem; }
+
+/* Privacy */
+.safe { background: var(--brand); color: #fff; border-radius: 32px; padding: 48px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+.safe h2 { color: #fff; text-shadow: 0 2px 12px rgba(10,40,80,.2); }
+.safe > div:first-child { text-shadow: 0 1px 8px rgba(10,40,80,.18); }
+.safe p { opacity: .95; margin: 0 0 18px; }
+.safe a { color: #fff; font-weight: 700; }
+.safe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.safe-grid div { background: #fff; color: #15222a; border-radius: 18px; padding: 16px; font-weight: 700; box-shadow: 0 8px 20px rgba(10,40,80,.12); }
+.safe-grid div span { display: block; font-size: 1.5rem; margin-bottom: 4px; }
+@media (max-width: 860px) { .safe { grid-template-columns: 1fr; padding: 32px 22px; } }
+@media (max-width: 420px) { .safe-grid { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { max-width: 780px; margin: 0 auto; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; }
 details + details { margin-top: 10px; }
-summary { font-weight: 600; cursor: pointer; }
+summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 1.3rem; line-height: 1; color: var(--blue); }
+details[open] summary::after { content: "–"; }
 details p, details ul { margin: 10px 0 0; color: var(--muted); }
-.contact { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
-footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 40px; }
+
+.contact { max-width: 780px; margin: 28px auto 0; background: var(--soft); border-radius: var(--radius); padding: 24px 26px; display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.contact p { margin: 0; }
+.btn { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; padding: 11px 18px; border-radius: 12px; font-weight: 700; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .92rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
 </style>
 </head>
 <body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="img/icon.png" alt="">ArtGames</a>
+    <div class="nav-links">
+      <a class="hide-sm" href="#les">Zo werkt het</a>
+      <a class="hide-sm" href="#leerpad">Leerpad</a>
+      <a href="#vragen">Hulp</a>
+      <a href="../">Alle spellen</a>
+    </div>
+  </div>
+</nav>
+
 <header class="hero">
-  <img class="icon" src="img/icon.png" alt="ArtGames-icoon: blauwe praatwolk met Hi! en een gouden kroon">
-  <h1>ArtGames</h1>
-  <p>Engels oefenen voor groep 4 tot en met de brugklas. Zonder internet, account of advertenties.</p>
-  <!-- Zet hier na goedkeuring de App Store-link neer, bv. https://apps.apple.com/nl/app/idXXXXXXXXX -->
-  <a class="store" href="#contact">Binnenkort in de App Store</a>
+  <div class="wrap">
+    <div>
+      <span class="app-id"><img src="img/icon.png" alt="">ArtGames voor iPhone en iPad</span>
+      <h1>Leer Engels spelenderwijs!</h1>
+      <p class="lead">Korte, speelse Engelse lessen voor groep 4 tot en met de brugklas. Luisteren, nazeggen en lezen, een paar minuten per dag.</p>
+      <div class="cta">
+        <!-- Zet hier na goedkeuring de App Store-link neer, bv. https://apps.apple.com/nl/app/idXXXXXXXXX -->
+        <a class="store" href="#vragen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.32.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.31-3.51zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.3-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.2z"/></svg><span><small>Binnenkort in de</small>App Store</span></a>
+        <a class="ghost" href="#les">Bekijk hoe het werkt ↓</a>
+      </div>
+      <ul class="chips">
+        <li>Gratis</li><li>Zonder advertenties</li><li>Werkt offline</li><li>Geen account nodig</li>
+      </ul>
+    </div>
+    <div class="hero-phones" aria-hidden="true">
+      <span class="bubble b1">Hello!</span>
+      <span class="bubble b2">Good job! ⭐</span>
+      <span class="bubble b3">My name is Sam</span>
+      <div class="phone p1"><img src="img/screens/home.jpg" alt=""></div>
+      <div class="phone p2"><img src="img/screens/speak.jpg" alt=""></div>
+    </div>
+  </div>
 </header>
 
-<main>
-  <section class="shots" aria-label="Schermafbeeldingen">
-    <img src="img/01-home.jpg" alt="Het leerpad met de knop Verder" loading="lazy">
-    <img src="img/03-speak.jpg" alt="Spreek na-oefening met microfoonknop" loading="lazy">
-    <img src="img/05-story.jpg" alt="Een Engels mini-verhaaltje om voor te lezen" loading="lazy">
-  </section>
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>6</b><span>niveaus</span></div>
+    <div class="stat"><b>75</b><span>hoofdstukken</span></div>
+    <div class="stat"><b>237</b><span>lessen</span></div>
+    <div class="stat"><b>3.000+</b><span>oefeningen</span></div>
+  </div>
+</div>
 
-  <section>
-    <h2>Wat kan je kind ermee?</h2>
-    <ul class="points">
-      <li><b>Luisteren en nazeggen</b>Elk woord hoor je gewoon of extra langzaam, en je zegt het daarna hardop na.</li>
-      <li><b>Slimme herhaling</b>Woorden die nog lastig zijn komen vanzelf terug tot ze blijven hangen.</li>
-      <li><b>Eerste verhaaltjes</b>Elk hoofdstuk eindigt met een kort verhaal. Tik op een woord om het te horen.</li>
-      <li><b>Per kind een eigen niveau</b>Van groep 4 tot de brugklas, met een eigen profiel voor elk kind.</li>
-      <li><b>Volledig offline</b>Geen internet, geen account en geen advertenties of aankopen in de app.</li>
-      <li><b>Inzicht voor ouders</b>Zie per kind de voortgang en stel een weekdoel in.</li>
-    </ul>
-  </section>
+<section id="les">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Zo werkt een les</span>
+      <h2>Een paar minuten per dag, en het blijft hangen</h2>
+      <p class="intro">Elke les wisselt luisteren, spreken en lezen af. Fout is niet erg: je krijgt een vriendelijke uitleg en de vraag komt later terug.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="phone"><img src="img/screens/listen.jpg" alt="Luisteroefening: tik op het juiste plaatje" loading="lazy"></div>
+        <h3><span class="num" style="background:var(--blue)">1</span>Luister</h3>
+        <p>Hoor het woord gewoon of extra langzaam en tik op het juiste plaatje.</p>
+      </div>
+      <div class="step">
+        <div class="phone"><img src="img/screens/match.jpg" alt="Koppel Engelse en Nederlandse woorden" loading="lazy"></div>
+        <h3><span class="num" style="background:var(--orange)">2</span>Oefen</h3>
+        <p>Koppel woorden, bouw zinnen en kies het juiste antwoord.</p>
+      </div>
+      <div class="step">
+        <div class="phone"><img src="img/screens/speak.jpg" alt="Spreek na-oefening met microfoonknop" loading="lazy"></div>
+        <h3><span class="num" style="background:var(--green)">3</span>Zeg het hardop</h3>
+        <p>De app luistert mee en checkt of je het goed zegt, op het apparaat zelf.</p>
+      </div>
+      <div class="step">
+        <div class="phone"><img src="img/screens/story.jpg" alt="Engels mini-verhaaltje" loading="lazy"></div>
+        <h3><span class="num" style="background:var(--purple)">4</span>Lees</h3>
+        <p>Elk hoofdstuk eindigt met een verhaaltje. Tik op een woord om het te horen.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section id="vragen">
-    <h2>Veelgestelde vragen</h2>
-    <details>
-      <summary>De microfoon of "Spreek na!" werkt niet</summary>
-      <p>Controleer of ArtGames toegang heeft tot de microfoon en spraakherkenning:</p>
-      <ul>
-        <li>Instellingen › Privacy en beveiliging › Microfoon › ArtGames aan</li>
-        <li>Instellingen › Privacy en beveiliging › Spraakherkenning › ArtGames aan</li>
-        <li>In de app: tandwiel › Microfoon (Spreek na!) aan</li>
+<section id="leerpad" style="padding-top:24px">
+  <div class="wrap">
+    <span class="eyebrow">Een leerpad per niveau</span>
+    <h2>Van "Hello!" in groep 4 tot "Werk &amp; toekomst" in de brugklas</h2>
+    <p class="intro">Elk kind oefent op zijn eigen niveau, met thema's die passen bij de leeftijd. Op de startpagina staat steeds de volgende les klaar.</p>
+    <div class="levels">
+      <article class="level"><div class="bar" style="opacity:.55"></div><header><h3>Groep 4</h3><span>10 hoofdstukken</span></header>
+        <ul><li>👋 Hallo &amp; gedag</li><li>👨‍👩‍👧‍👦 Mijn familie</li><li>🐶 Dieren</li><li>🎨 Kleuren &amp; cijfers</li><li>😊 Gevoelens</li></ul></article>
+      <article class="level"><div class="bar" style="opacity:.65"></div><header><h3>Groep 5</h3><span>8 hoofdstukken</span></header>
+        <ul><li>👋 Jezelf voorstellen</li><li>🏠 Mijn huis &amp; kamer</li><li>👕 Kleding &amp; het weer</li><li>🎈 Hobby's &amp; feest</li></ul></article>
+      <article class="level"><div class="bar" style="opacity:.75"></div><header><h3>Groep 6</h3><span>15 hoofdstukken</span></header>
+        <ul><li>🏃 Sport &amp; bewegen</li><li>🕐 De klok</li><li>💰 Winkelen &amp; geld</li><li>🚲 Vervoer &amp; de stad</li></ul></article>
+      <article class="level"><div class="bar" style="opacity:.85"></div><header><h3>Groep 7</h3><span>12 hoofdstukken</span></header>
+        <ul><li>🍕 Eten &amp; drinken</li><li>💰 Zakgeld &amp; sparen</li><li>✈️ Reizen &amp; vakantie</li><li>📱 Technologie &amp; media</li></ul></article>
+      <article class="level"><div class="bar" style="opacity:.92"></div><header><h3>Groep 8</h3><span>15 hoofdstukken</span></header>
+        <ul><li>🏙️ Steden</li><li>🌱 Milieu</li><li>💼 Bijbaantjes &amp; werk</li><li>📱 Social media</li></ul></article>
+      <article class="level"><div class="bar"></div><header><h3>Brugklas</h3><span>15 hoofdstukken</span></header>
+        <ul><li>🏫 Nieuwe school &amp; rooster</li><li>✈️ Engelstalige landen</li><li>💼 Werk &amp; toekomst</li><li>😤 Gevoelens &amp; conflicten</li></ul></article>
+    </div>
+    <p class="extra">🎃 🎄 💝 ☀️ Rond Halloween, Kerst, Valentijn en de zomervakantie komen er extra seizoenshoofdstukken bij.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div class="duo" aria-hidden="true">
+      <div class="phone"><img src="img/screens/mc.jpg" alt="" loading="lazy"></div>
+      <div class="phone"><img src="img/screens/home.jpg" alt="" loading="lazy"></div>
+    </div>
+    <div>
+      <span class="eyebrow">Afwisselend en slim</span>
+      <h2>Acht soorten oefeningen en slimme herhaling</h2>
+      <p class="intro" style="margin-bottom:22px">Woorden die je nog lastig vindt komen vanzelf terug, net op het moment dat je ze bijna vergeet.</p>
+      <ul class="list">
+        <li><span>🎧</span><span><b>Luisteren en kiezen</b><small>Gewoon of extra langzaam uitgesproken</small></span></li>
+        <li><span>🎙️</span><span><b>Hardop nazeggen</b><small>Woorden en hele zinnen</small></span></li>
+        <li><span>🧩</span><span><b>Koppelen en zinnen bouwen</b><small>Met woordblokjes en invuloefeningen</small></span></li>
+        <li><span>💬</span><span><b>Korte gesprekjes en grammatica</b><small>am/is/are, a/an en de -s bij he/she</small></span></li>
+        <li><span>⌨️</span><span><b>Typen</b><small>Woorden en zinnen, vanaf groep 5</small></span></li>
       </ul>
-      <p>Spraakherkenning draait op het apparaat zelf. Op sommige oudere iPhones en iPads is dat voor het Engels niet beschikbaar; de app laat dat dan zien. Met de knop "Nu even niet praten" sla je de oefening over.</p>
-    </details>
-    <details>
-      <summary>Hoe wissel ik van kind of van niveau?</summary>
-      <p>Tik linksboven op de naam van het kind. In dat menu kies je een ander niveau of "Wissel van profiel".</p>
-    </details>
-    <details>
-      <summary>Hoe verwijder ik een profiel of begin ik opnieuw?</summary>
-      <p>Tik op het tandwiel rechtsboven. Onder "Kinderprofielen" kun je de voortgang van een kind resetten of het profiel verwijderen.</p>
-    </details>
-    <details>
-      <summary>Neem ik de voortgang mee naar een nieuwe iPhone of iPad?</summary>
-      <p>De voortgang staat alleen op het apparaat. Zet je een nieuw apparaat over met een iCloud-reservekopie of Snelle start, dan gaat de voortgang mee.</p>
-    </details>
-    <details>
-      <summary>Kost de app iets of zitten er advertenties in?</summary>
-      <p>Er zitten geen advertenties en geen aankopen in de app.</p>
-    </details>
-  </section>
+    </div>
+  </div>
+</section>
 
-  <section id="contact" class="contact">
-    <h2>Contact en hulp</h2>
-    <p>Werkt er iets niet, of heb je een idee voor een nieuwe les? Mail naar <a href="mailto:wychert@gmail.com">wychert@gmail.com</a>. Je krijgt meestal binnen een paar dagen antwoord.</p>
-    <p><a href="privacy.html">Privacybeleid</a></p>
-  </section>
-</main>
+<section>
+  <div class="wrap split rev">
+    <div class="duo" aria-hidden="true">
+      <div class="phone"><img src="img/screens/picker.jpg" alt="" loading="lazy"></div>
+      <div class="phone"><img src="img/screens/parent.jpg" alt="" loading="lazy"></div>
+    </div>
+    <div>
+      <span class="eyebrow">Voor het hele gezin</span>
+      <h2>Elk kind een eigen profiel, ouders houden overzicht</h2>
+      <p class="intro" style="margin-bottom:22px">Broertjes en zusjes oefenen op hun eigen niveau op hetzelfde apparaat. Wisselen gaat in een paar tikken.</p>
+      <ul class="list">
+        <li><span>⭐</span><span><b>Motivatie zonder straf</b><small>Sterren, een reeks dagen en een weekdoel</small></span></li>
+        <li><span>📊</span><span><b>Ouder-hoekje</b><small>Per kind de lessen, woorden en voortgang</small></span></li>
+        <li><span>🎯</span><span><b>Weekdoel instellen</b><small>Bijvoorbeeld drie lessen per week</small></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<footer>© 2026 Wychert Oskam · <a href="../">ArtGames</a></footer>
+<section>
+  <div class="wrap">
+    <div class="safe">
+      <div>
+        <h2>Veilig voor kinderen</h2>
+        <p>ArtGames verzamelt geen gegevens. Alles wat de app bewaart staat alleen op jouw iPhone of iPad, en spraakherkenning gebeurt op het apparaat zelf.</p>
+        <a href="privacy.html">Lees het privacybeleid →</a>
+      </div>
+      <div class="safe-grid">
+        <div><span>📵</span>Werkt zonder internet</div>
+        <div><span>🙅</span>Geen account of e-mail</div>
+        <div><span>🚫</span>Geen advertenties of aankopen</div>
+        <div><span>🔒</span>Geen gegevens verzameld</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vragen" style="padding-top:24px">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Hulp</span>
+      <h2>Veelgestelde vragen</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>De microfoon of "Spreek na!" werkt niet</summary>
+        <p>Controleer of ArtGames toegang heeft tot de microfoon en spraakherkenning:</p>
+        <ul>
+          <li>Instellingen › Privacy en beveiliging › Microfoon › ArtGames aan</li>
+          <li>Instellingen › Privacy en beveiliging › Spraakherkenning › ArtGames aan</li>
+          <li>In de app: tandwiel › Microfoon (Spreek na!) aan</li>
+        </ul>
+        <p>Spraakherkenning draait op het apparaat zelf. Op sommige oudere iPhones en iPads is dat voor het Engels niet beschikbaar; de app laat dat dan zien. Met de knop "Nu even niet praten" sla je de oefening over.</p>
+      </details>
+      <details>
+        <summary>Hoe wissel ik van kind of van niveau?</summary>
+        <p>Tik linksboven op de naam van het kind. In dat menu kies je een ander niveau of "Wissel van profiel".</p>
+      </details>
+      <details>
+        <summary>Hoe verwijder ik een profiel of begin ik opnieuw?</summary>
+        <p>Tik op het tandwiel rechtsboven. Onder "Kinderprofielen" kun je de voortgang van een kind resetten of het profiel verwijderen.</p>
+      </details>
+      <details>
+        <summary>Neem ik de voortgang mee naar een nieuwe iPhone of iPad?</summary>
+        <p>De voortgang staat alleen op het apparaat. Zet je een nieuw apparaat over met een iCloud-reservekopie of Snelle start, dan gaat de voortgang mee.</p>
+      </details>
+      <details>
+        <summary>Kost de app iets of zitten er advertenties in?</summary>
+        <p>Er zitten geen advertenties en geen aankopen in de app.</p>
+      </details>
+    </div>
+    <div class="contact" id="contact">
+      <p><b>Werkt er iets niet, of heb je een idee voor een nieuwe les?</b><br>Je krijgt meestal binnen een paar dagen antwoord.</p>
+      <a class="btn" href="mailto:wychert@gmail.com">Mail wychert@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Wychert Oskam · <a href="../">ArtGames: leren met spellen</a></span>
+    <span><a href="privacy.html">Privacybeleid</a> · <a href="#contact">Contact</a></span>
+  </div>
+</footer>
 </body>
 </html>
