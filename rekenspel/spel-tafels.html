@@ -52,7 +52,7 @@
     </div>
 
     <script src="src/game.js"></script>
-    <script src="/assets/progress.js?v=1"></script>
+    <script src="/assets/progress.js?v=2"></script>
     <script>
 AG.spel({ id: "rekenen-tafels", titel: "Tafels oefenen", vak: "rekenen" });
 AG.naAfloop("updateDisplay", function () { return questionCount > 0 && questionCount % 10 === 0 ? { deel: "Grote tafels", procent: Math.round(correctCount / questionCount * 100), tekst: correctCount + " van de " + questionCount + " goed" } : null; });

@@ -8,7 +8,7 @@
 <meta name="apple-itunes-app" content="app-id=6836407113">
 <link rel="icon" href="app/img/icon.png">
 <link rel="apple-touch-icon" href="app/img/icon.png">
-<link rel="stylesheet" href="assets/site.css?v=1">
+<link rel="stylesheet" href="assets/site.css?v=2">
 <style>
 .hero { position: relative; z-index: 1; text-align: center; padding: 26px 0 110px; }
 .hero .lead { margin: 0 auto; }
@@ -40,6 +40,15 @@
 .choice.add { border-style: dashed; color: var(--muted); }
 .private { color: var(--muted); font-size: .92rem; text-align: center; margin: 28px 0 0; }
 .private button { font: inherit; color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+.mee { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px; margin: 16px auto 0; max-width: 720px; box-shadow: var(--shadow); }
+.mee h3 { margin: 0 0 6px; }
+.mee p { color: var(--muted); margin: 0 0 12px; font-size: .95rem; }
+.mee-rij { display: flex; gap: 8px; flex-wrap: wrap; }
+.mee-rij input { flex: 1 1 260px; font: inherit; font-size: .9rem; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; }
+.btn.licht { background: var(--soft); color: var(--ink); }
+.mee-melding { margin: 10px 0 0 !important; font-weight: 700; color: var(--ink) !important; }
+.mee-gevonden { border: 2px solid #65cf8a; display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 0; max-width: none; box-shadow: none; }
+.mee-gevonden[hidden] { display: none; }
 .empty { background: var(--card); border: 2px dashed var(--line); border-radius: var(--radius); padding: 26px; text-align: center; color: var(--muted); }
 .empty b { color: var(--ink); display: block; font-size: 1.1rem; margin-bottom: 4px; }
 
@@ -70,7 +79,7 @@
   <nav class="nav on-brand">
     <div class="wrap">
       <a class="logo" href="./"><img src="app/img/icon.png" alt="">ArtGames</a>
-      <div class="nav-links"><a class="pill" href="app/">📱 De app</a></div>
+      <div class="nav-links"><a href="leerkrachten/">Voor leerkrachten</a><a class="pill" href="app/">📱 De app</a></div>
     </div>
   </nav>
   <div class="floaters" aria-hidden="true">
@@ -114,7 +123,17 @@
     </noscript>
   </section>
 
-  <p class="private">🔒 Je voortgang blijft alleen in deze browser. We slaan niets op en gebruiken geen cookies. <button type="button" id="wis">Wis mijn voortgang</button></p>
+  <p class="private">🔒 Je voortgang blijft alleen in deze browser. We slaan niets op en gebruiken geen cookies. <button type="button" id="mee-knop">📲 Neem je voortgang mee</button> · <button type="button" id="wis">Wis mijn voortgang</button></p>
+
+  <div class="mee" id="mee" hidden>
+    <h3>Verder op een ander apparaat</h3>
+    <p>Open deze link op je andere computer, tablet of telefoon. Je voortgang zit in de link zelf; wij slaan niets op. Bewaar de link goed: zonder link is je voortgang daar niet terug te halen.</p>
+    <div class="mee-rij"><input id="mee-link" readonly aria-label="Link met je voortgang"><button class="btn" type="button" id="mee-kopieer">Kopieer</button><button class="btn licht" type="button" id="mee-deel" hidden>Delen</button></div>
+    <h3 style="margin-top:22px">Heb je al een link of code?</h3>
+    <div class="mee-rij"><input id="mee-invoer" placeholder="Plak hier je link of code" aria-label="Link of code"><button class="btn" type="button" id="mee-neem">Overnemen</button></div>
+    <p class="mee-melding" id="mee-melding" aria-live="polite"></p>
+  </div>
+  <div class="mee mee-gevonden" id="gevonden" hidden></div>
 
   <section class="app-band" style="padding:0">
     <div class="text">
@@ -139,11 +158,11 @@
 <footer class="site">
   <div class="wrap">
     <span>© 2026 Wychert Oskam · ArtGames</span>
-    <span><a href="app/">ArtGames-app</a> · <a href="app/privacy.html#website">Privacy</a> · <a href="mailto:wychert@gmail.com">Contact</a></span>
+    <span><a href="leerkrachten/">Voor leerkrachten</a> · <a href="app/">ArtGames-app</a> · <a href="app/privacy.html#website">Privacy</a> · <a href="mailto:wychert@gmail.com">Contact</a></span>
   </div>
 </footer>
 
-<script src="assets/progress.js?v=1"></script>
+<script src="assets/progress.js?v=2"></script>
 <script src="assets/catalog.js?v=4"></script>
 <script>
 (function () {
@@ -259,6 +278,41 @@
       AG.wisAlles(); try { localStorage.removeItem(KEY); } catch (e) {} location.href = location.pathname;
     }
   });
+
+  /* Voortgang meenemen */
+  var mee = document.getElementById("mee"), melding = document.getElementById("mee-melding");
+  document.getElementById("mee-knop").addEventListener("click", function () {
+    mee.hidden = !mee.hidden; if (mee.hidden) return;
+    AG.exporteer().then(function (code) {
+      var link = location.origin + "/#voortgang=" + code;
+      document.getElementById("mee-link").value = link;
+      var deel = document.getElementById("mee-deel");
+      if (navigator.share) { deel.hidden = false; deel.onclick = function () { navigator.share({ title: "Mijn ArtGames-voortgang", url: link }).catch(function () {}); }; }
+    });
+  });
+  document.getElementById("mee-kopieer").addEventListener("click", function () {
+    var i = document.getElementById("mee-link"); i.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(i.value) : Promise.reject()).then(function () { melding.textContent = "✓ Gekopieerd. Stuur de link naar jezelf of bewaar hem."; }, function () { document.execCommand && document.execCommand("copy"); melding.textContent = "Selecteer de link en kopieer hem."; });
+  });
+  function neemOver(code, box) {
+    return AG.lees(code).then(function (mini) { var naam = AG.importeer(mini); render(); return naam; });
+  }
+  document.getElementById("mee-neem").addEventListener("click", function () {
+    neemOver(document.getElementById("mee-invoer").value).then(function (naam) { melding.textContent = "✓ De voortgang van " + naam + " staat nu op dit apparaat."; }, function () { melding.textContent = "Deze link of code werkt niet. Kopieer hem nog eens helemaal."; });
+  });
+  // Geopend via een meeneem-link?
+  var h = location.hash.match(/voortgang=([A-Za-z0-9_-]+)/);
+  if (h) {
+    history.replaceState(null, "", location.pathname + location.search);
+    AG.lees(h[1]).then(function (mini) {
+      var g = document.getElementById("gevonden"); g.hidden = false;
+      var n = Object.keys(mini.s).length;
+      g.innerHTML = "<div><b>Voortgang gevonden" + (mini.n ? " van " + esc(mini.n) : "") + "</b><br><span style='color:var(--muted)'>" + n + (n === 1 ? " spel" : " spellen") + " gespeeld. Wil je die op dit apparaat zetten?</span></div><div class='mee-rij'><button class='btn' type='button' id='ja'>Ja, overnemen</button><button class='btn licht' type='button' id='nee'>Nee</button></div>";
+      document.getElementById("ja").onclick = function () { var naam = AG.importeer(mini); g.innerHTML = "<b>✓ Welkom, " + esc(naam) + "! Je kunt verder waar je was.</b>"; render(); };
+      document.getElementById("nee").onclick = function () { g.hidden = true; };
+      document.querySelector(".picker").prepend(g);
+    }, function () {});
+  }
 
   render();
 })();

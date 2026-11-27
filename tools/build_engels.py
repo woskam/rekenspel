@@ -43,7 +43,7 @@ NAV = """<div class="top">
 
 FOOT = """<footer class="site"><div class="wrap">
   <span>© 2026 Wychert Oskam · ArtGames</span>
-  <span><a href="/">Alle spellen</a> · <a href="/app/">ArtGames-app</a> · <a href="/app/privacy.html#website">Privacy</a></span>
+  <span><a href="/">Alle spellen</a> · <a href="/leerkrachten/">Voor leerkrachten</a> · <a href="/app/">ArtGames-app</a> · <a href="/app/privacy.html#website">Privacy</a></span>
 </div></footer>
 """
 
@@ -111,7 +111,7 @@ def thema_pagina(level, c, vorige, volgende):
 </main>
 {FOOT}
 <script id="les-data" type="application/json">{json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}</script>
-<script src="/assets/progress.js?v=1"></script>
+<script src="/assets/progress.js?v=2"></script>
 <script src="/assets/oefen.js?v={V}"></script>
 </body>
 </html>
@@ -148,7 +148,7 @@ def overzicht(level, chapters):
   {APPTIP}
 </main>
 {FOOT}
-<script src="/assets/progress.js?v=1"></script>
+<script src="/assets/progress.js?v=2"></script>
 <script>
 document.querySelectorAll(".thema, [data-id]").forEach(function (a) {{
   var x = window.AG && AG.info(a.getAttribute("data-id")); if (!x) return;
