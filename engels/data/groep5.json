@@ -61,22 +61,22 @@
        "nl": "Mijn naam is Sam"
       },
       {
-       "emoji": "💬",
+       "emoji": "🙂",
        "en": "I am fine",
        "nl": "Ik maak het goed"
       },
       {
-       "emoji": "💬",
+       "emoji": "❓",
        "en": "What's your name?",
        "nl": "Hoe heet jij?"
       },
       {
-       "emoji": "💬",
+       "emoji": "🌍",
        "en": "Where are you from?",
        "nl": "Waar kom je vandaan?"
       },
       {
-       "emoji": "💬",
+       "emoji": "👉",
        "en": "And you?",
        "nl": "En jij?"
       },
@@ -113,12 +113,12 @@
        "nl": "Ja"
       },
       {
-       "emoji": "💬",
+       "emoji": "🙅",
        "en": "No",
        "nl": "Nee"
       },
       {
-       "emoji": "💬",
+       "emoji": "👌",
        "en": "Of course",
        "nl": "Natuurlijk"
       },
@@ -206,7 +206,7 @@
        "nl": "zus"
       },
       {
-       "emoji": "💬",
+       "emoji": "👴",
        "en": "grandfather",
        "nl": "opa"
       },
@@ -243,7 +243,7 @@
        "nl": "leraar / lerares"
       },
       {
-       "emoji": "💬",
+       "emoji": "🧑‍🤝‍🧑",
        "en": "classmate",
        "nl": "klasgenoot"
       },
@@ -253,12 +253,12 @@
        "nl": "beste vriend(in)"
       },
       {
-       "emoji": "💬",
+       "emoji": "🧑‍🎓",
        "en": "student",
        "nl": "leerling"
       },
       {
-       "emoji": "🍎",
+       "emoji": "🧑‍🏫",
        "en": "This is my teacher",
        "nl": "Dit is mijn leraar"
       }
@@ -474,7 +474,7 @@
        "nl": "ontbijt"
       },
       {
-       "emoji": "💬",
+       "emoji": "🥪",
        "en": "lunch",
        "nl": "lunch (middageten)"
       },
@@ -484,7 +484,7 @@
        "nl": "avondeten"
       },
       {
-       "emoji": "💬",
+       "emoji": "😋",
        "en": "delicious",
        "nl": "heerlijk"
       },
@@ -1185,7 +1185,7 @@
      "title": "Hobby's",
      "words": [
       {
-       "emoji": "📖",
+       "emoji": "👓",
        "en": "to read",
        "nl": "lezen"
       },

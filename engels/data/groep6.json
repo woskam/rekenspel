@@ -770,12 +770,12 @@
        "nl": "poster"
       },
       {
-       "emoji": "🛋️",
+       "emoji": "🛏️",
        "en": "pillow",
        "nl": "kussen"
       },
       {
-       "emoji": "🧶",
+       "emoji": "🛌",
        "en": "blanket",
        "nl": "deken"
       }
@@ -801,7 +801,7 @@
        "nl": "kast"
       },
       {
-       "emoji": "🪑",
+       "emoji": "🍽️",
        "en": "table",
        "nl": "tafel"
       },
@@ -910,7 +910,7 @@
        "nl": "verhaal"
       },
       {
-       "emoji": "📖",
+       "emoji": "👓",
        "en": "to read",
        "nl": "lezen"
       },
@@ -992,7 +992,7 @@
        "nl": "klimmen"
       },
       {
-       "emoji": "🙈",
+       "emoji": "🫣",
        "en": "to hide",
        "nl": "verstoppen"
       },
@@ -1395,7 +1395,7 @@
        "nl": "mandje"
       },
       {
-       "emoji": "💳",
+       "emoji": "💰",
        "en": "to pay",
        "nl": "betalen"
       },
@@ -1659,7 +1659,7 @@
        "nl": "droog"
       },
       {
-       "emoji": "🌀",
+       "emoji": "💧",
        "en": "wet",
        "nl": "nat"
       },

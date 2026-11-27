@@ -27,6 +27,11 @@ if __name__ == "__main__":
     app = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/Taalkampioen")
     chapters = export(app)
 
+    # Woorden die in de app geen eigen emoji hebben (koppeloefeningen in groep 5)
+    EIGEN = {"i am fine": "🙂", "what's your name?": "❓", "where are you from?": "🌍", "and you?": "👉",
+             "no": "🙅", "of course": "👌", "classmate": "🧑‍🤝‍🧑", "student": "🧑‍🎓", "lunch": "🥪",
+             "delicious": "😋", "grandfather": "👴", "bus": "🚌", "internet": "🌐", "to text": "📲",
+             "good night": "🌙", "thank you": "🙏"}
     # Woorden zonder emoji krijgen het emoji van hetzelfde woord elders in de app
     emoji = {}
     for c in chapters:
@@ -36,7 +41,7 @@ if __name__ == "__main__":
     for c in chapters:
         for l in c["lessons"]:
             for w in l["words"]:
-                if not w["emoji"]: w["emoji"] = emoji.get(w["en"].lower(), "💬")
+                if not w["emoji"]: w["emoji"] = EIGEN.get(w["en"].lower()) or emoji.get(w["en"].lower(), "💬")
 
     per = {}
     for c in chapters:
