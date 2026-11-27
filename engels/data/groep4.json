@@ -1,0 +1,1508 @@
+{
+ "level": "groep4",
+ "chapters": [
+  {
+   "description": "Begroeten, vragen hoe het gaat en afscheid nemen",
+   "emoji": "👋",
+   "lessons": [
+    {
+     "emoji": "👋",
+     "sentences": [
+      "Hello! How are you?",
+      "Good morning, teacher!"
+     ],
+     "subtitle": "Hallo zeggen in het Engels",
+     "title": "Zeg hallo",
+     "words": [
+      {
+       "emoji": "🌃",
+       "en": "good evening",
+       "nl": "goedenavond"
+      },
+      {
+       "emoji": "🌅",
+       "en": "good morning",
+       "nl": "goedemorgen"
+      },
+      {
+       "emoji": "👋",
+       "en": "goodbye",
+       "nl": "dag"
+      },
+      {
+       "emoji": "👋",
+       "en": "hello",
+       "nl": "hallo"
+      },
+      {
+       "emoji": "🌇",
+       "en": "good afternoon",
+       "nl": "goedemiddag"
+      },
+      {
+       "emoji": "🖐️",
+       "en": "hi",
+       "nl": "hoi"
+      }
+     ]
+    },
+    {
+     "emoji": "😊",
+     "sentences": [
+      "Are you happy?",
+      "I am fine, thank you!"
+     ],
+     "subtitle": "Vertellen hoe het met je gaat",
+     "title": "Hoe gaat het?",
+     "words": [
+      {
+       "emoji": "⭐",
+       "en": "good",
+       "nl": "goed"
+      },
+      {
+       "emoji": "😢",
+       "en": "sad",
+       "nl": "verdrietig"
+      },
+      {
+       "emoji": "👍",
+       "en": "fine",
+       "nl": "goed"
+      },
+      {
+       "emoji": "😴",
+       "en": "tired",
+       "nl": "moe"
+      },
+      {
+       "emoji": "🍽️",
+       "en": "hungry",
+       "nl": "hongerig"
+      },
+      {
+       "emoji": "😊",
+       "en": "happy",
+       "nl": "blij"
+      }
+     ]
+    },
+    {
+     "emoji": "🌙",
+     "sentences": [
+      "See you tomorrow!",
+      "Good night! Sleep well!"
+     ],
+     "subtitle": "Afscheid nemen",
+     "title": "Tot ziens!",
+     "words": [
+      {
+       "emoji": "📅",
+       "en": "see you tomorrow",
+       "nl": "tot morgen"
+      },
+      {
+       "emoji": "🚪",
+       "en": "welcome",
+       "nl": "welkom"
+      },
+      {
+       "emoji": "🙏",
+       "en": "thank you",
+       "nl": "dank je wel"
+      },
+      {
+       "emoji": "👋",
+       "en": "see you",
+       "nl": "tot ziens"
+      },
+      {
+       "emoji": "🌙",
+       "en": "good night",
+       "nl": "goedenacht"
+      },
+      {
+       "emoji": "🥺",
+       "en": "please",
+       "nl": "alsjeblieft"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 1,
+   "seasonal": false,
+   "story": {
+    "emoji": "☀️",
+    "sentences": [
+     {
+      "emoji": "☀️",
+      "en": "Good morning!",
+      "nl": "Goedemorgen!"
+     },
+     {
+      "emoji": "😊",
+      "en": "I am happy today.",
+      "nl": "Ik ben vandaag blij."
+     },
+     {
+      "emoji": "👋",
+      "en": "See you tomorrow!",
+      "nl": "Tot morgen!"
+     }
+    ],
+    "title": "Een nieuwe dag"
+   },
+   "title": "Hallo & gedag",
+   "slug": "hallo-en-gedag"
+  },
+  {
+   "description": "Familieleden en over je familie praten",
+   "emoji": "👨‍👩‍👧‍👦",
+   "lessons": [
+    {
+     "emoji": "👨‍👩‍👧",
+     "sentences": [
+      "My mum is kind.",
+      "I have one brother."
+     ],
+     "subtitle": "Moeder, vader, zus, broer",
+     "title": "Het gezin",
+     "words": [
+      {
+       "emoji": "👩",
+       "en": "mum",
+       "nl": "moeder"
+      },
+      {
+       "emoji": "👦",
+       "en": "brother",
+       "nl": "broer"
+      },
+      {
+       "emoji": "👨‍👩‍👧‍👦",
+       "en": "family",
+       "nl": "familie"
+      },
+      {
+       "emoji": "👨",
+       "en": "dad",
+       "nl": "vader"
+      },
+      {
+       "emoji": "👧",
+       "en": "sister",
+       "nl": "zus"
+      }
+     ]
+    },
+    {
+     "emoji": "👵",
+     "sentences": [
+      "My grandma bakes cookies.",
+      "My uncle is funny."
+     ],
+     "subtitle": "Oma, opa, tante, oom",
+     "title": "Familie eromheen",
+     "words": [
+      {
+       "emoji": "👩‍🦰",
+       "en": "aunt",
+       "nl": "tante"
+      },
+      {
+       "emoji": "👨‍🦰",
+       "en": "uncle",
+       "nl": "oom"
+      },
+      {
+       "emoji": "🧒",
+       "en": "cousin",
+       "nl": "neefje/nichtje"
+      },
+      {
+       "emoji": "👵",
+       "en": "grandma",
+       "nl": "oma"
+      },
+      {
+       "emoji": "👴",
+       "en": "grandpa",
+       "nl": "opa"
+      },
+      {
+       "emoji": "👫",
+       "en": "parents",
+       "nl": "ouders"
+      }
+     ]
+    },
+    {
+     "emoji": "💬",
+     "sentences": [
+      "My sister is small.",
+      "My dad is funny.",
+      "My grandma bakes cookies."
+     ],
+     "subtitle": "Mijn, jouw, groot, klein, grappig",
+     "title": "Over mijn familie",
+     "words": [
+      {
+       "emoji": "💛",
+       "en": "kind",
+       "nl": "vriendelijk"
+      },
+      {
+       "emoji": "🔹",
+       "en": "my",
+       "nl": "mijn"
+      },
+      {
+       "emoji": "🔸",
+       "en": "your",
+       "nl": "jouw"
+      },
+      {
+       "emoji": "🐘",
+       "en": "big",
+       "nl": "groot"
+      },
+      {
+       "emoji": "🐜",
+       "en": "small",
+       "nl": "klein"
+      },
+      {
+       "emoji": "😄",
+       "en": "funny",
+       "nl": "grappig"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 2,
+   "seasonal": false,
+   "story": {
+    "emoji": "👨‍👩‍👧‍👦",
+    "sentences": [
+     {
+      "emoji": "👩",
+      "en": "My mum is kind.",
+      "nl": "Mijn moeder is lief."
+     },
+     {
+      "emoji": "👦",
+      "en": "I have one brother.",
+      "nl": "Ik heb één broer."
+     },
+     {
+      "emoji": "😄",
+      "en": "My dad is funny.",
+      "nl": "Mijn vader is grappig."
+     }
+    ],
+    "title": "Mijn familie"
+   },
+   "title": "Mijn familie",
+   "slug": "mijn-familie"
+  },
+  {
+   "description": "Jezelf voorstellen in het Engels",
+   "emoji": "🙋",
+   "lessons": [
+    {
+     "emoji": "🙋",
+     "sentences": [
+      "I am Tom.",
+      "You are my friend."
+     ],
+     "subtitle": "Persoonlijke voornaamwoorden",
+     "title": "Ik en jij",
+     "words": [
+      {
+       "emoji": "👨‍👩‍👧",
+       "en": "we",
+       "nl": "wij"
+      },
+      {
+       "emoji": "👧",
+       "en": "she",
+       "nl": "zij"
+      },
+      {
+       "emoji": "🫵",
+       "en": "you",
+       "nl": "jij"
+      },
+      {
+       "emoji": "🙋",
+       "en": "I",
+       "nl": "ik"
+      },
+      {
+       "emoji": "🧑‍🤝‍🧑",
+       "en": "they",
+       "nl": "zij (meerdere)"
+      },
+      {
+       "emoji": "👦",
+       "en": "he",
+       "nl": "hij"
+      }
+     ]
+    },
+    {
+     "emoji": "🫳",
+     "sentences": [
+      "We are friends.",
+      "He has a bike."
+     ],
+     "subtitle": "Am, is, are, have, has",
+     "title": "Zijn & hebben",
+     "words": [
+      {
+       "emoji": "🏷️",
+       "en": "name",
+       "nl": "naam"
+      },
+      {
+       "emoji": "🫳",
+       "en": "has",
+       "nl": "heeft"
+      },
+      {
+       "emoji": "🙋",
+       "en": "am",
+       "nl": "ben"
+      },
+      {
+       "emoji": "👫",
+       "en": "are",
+       "nl": "zijn"
+      },
+      {
+       "emoji": "🤲",
+       "en": "have",
+       "nl": "heb"
+      }
+     ]
+    },
+    {
+     "emoji": "🗺️",
+     "sentences": [
+      "I live in Amsterdam.",
+      "I am eight years old."
+     ],
+     "subtitle": "Leeftijd, woonplaats, afkomst",
+     "title": "Zich voorstellen",
+     "words": [
+      {
+       "emoji": "📆",
+       "en": "year",
+       "nl": "jaar"
+      },
+      {
+       "emoji": "🏙️",
+       "en": "city",
+       "nl": "stad"
+      },
+      {
+       "emoji": "🌍",
+       "en": "country",
+       "nl": "land"
+      },
+      {
+       "emoji": "🏡",
+       "en": "live",
+       "nl": "wonen"
+      },
+      {
+       "emoji": "🎂",
+       "en": "old",
+       "nl": "jaar oud"
+      },
+      {
+       "emoji": "🗺️",
+       "en": "from",
+       "nl": "uit"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 3,
+   "seasonal": false,
+   "story": {
+    "emoji": "🙋",
+    "sentences": [
+     {
+      "emoji": "🙋",
+      "en": "I am Sam.",
+      "nl": "Ik ben Sam."
+     },
+     {
+      "emoji": "🎂",
+      "en": "I am eight years old.",
+      "nl": "Ik ben acht jaar oud."
+     },
+     {
+      "emoji": "🏙️",
+      "en": "I live in Amsterdam.",
+      "nl": "Ik woon in Amsterdam."
+     }
+    ],
+    "title": "Ik ben Sam"
+   },
+   "title": "Ik, jij, hij, zij",
+   "slug": "ik-jij-hij-zij"
+  },
+  {
+   "description": "Kamers, meubels en spullen in huis",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "emoji": "🏠",
+     "sentences": [
+      "My house is big.",
+      "The door is open."
+     ],
+     "subtitle": "De kamers in huis",
+     "title": "Kamers & deur",
+     "words": [
+      {
+       "emoji": "🛏️",
+       "en": "room",
+       "nl": "kamer"
+      },
+      {
+       "emoji": "🏠",
+       "en": "house",
+       "nl": "huis"
+      },
+      {
+       "emoji": "🍳",
+       "en": "kitchen",
+       "nl": "keuken"
+      },
+      {
+       "emoji": "🚪",
+       "en": "door",
+       "nl": "deur"
+      },
+      {
+       "emoji": "🪟",
+       "en": "window",
+       "nl": "raam"
+      },
+      {
+       "emoji": "🛁",
+       "en": "bathroom",
+       "nl": "badkamer"
+      }
+     ]
+    },
+    {
+     "emoji": "🪑",
+     "sentences": [
+      "My bed is soft.",
+      "I sit on the chair."
+     ],
+     "subtitle": "Tafel, stoel, bed en kast",
+     "title": "Meubels",
+     "words": [
+      {
+       "emoji": "🛋️",
+       "en": "sofa",
+       "nl": "bank"
+      },
+      {
+       "emoji": "🪑",
+       "en": "chair",
+       "nl": "stoel"
+      },
+      {
+       "emoji": "🍽️",
+       "en": "table",
+       "nl": "tafel"
+      },
+      {
+       "emoji": "🗄️",
+       "en": "cupboard",
+       "nl": "kast"
+      },
+      {
+       "emoji": "💡",
+       "en": "lamp",
+       "nl": "lamp"
+      }
+     ]
+    },
+    {
+     "emoji": "📺",
+     "sentences": [
+      "I read a book.",
+      "We watch TV."
+     ],
+     "subtitle": "TV, boek, speelgoed",
+     "title": "In de woonkamer",
+     "words": [
+      {
+       "emoji": "📖",
+       "en": "book",
+       "nl": "boek"
+      },
+      {
+       "emoji": "🟫",
+       "en": "floor",
+       "nl": "vloer"
+      },
+      {
+       "emoji": "📺",
+       "en": "TV",
+       "nl": "televisie"
+      },
+      {
+       "emoji": "🧸",
+       "en": "toy",
+       "nl": "speelgoed"
+      },
+      {
+       "emoji": "🖼️",
+       "en": "picture",
+       "nl": "foto"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 4,
+   "seasonal": false,
+   "story": {
+    "emoji": "🏠",
+    "sentences": [
+     {
+      "emoji": "🏠",
+      "en": "My house is big.",
+      "nl": "Mijn huis is groot."
+     },
+     {
+      "emoji": "🚪",
+      "en": "The door is open.",
+      "nl": "De deur is open."
+     },
+     {
+      "emoji": "📖",
+      "en": "I read a book.",
+      "nl": "Ik lees een boek."
+     }
+    ],
+    "title": "Thuis"
+   },
+   "title": "Mijn huis",
+   "slug": "mijn-huis"
+  },
+  {
+   "description": "Eten, drinken en maaltijden",
+   "emoji": "🍎",
+   "lessons": [
+    {
+     "emoji": "🍎",
+     "sentences": [
+      "I drink milk.",
+      "I like apples."
+     ],
+     "subtitle": "Appel, banaan, brood, kaas",
+     "title": "Fruit & zuivel",
+     "words": [
+      {
+       "emoji": "🧀",
+       "en": "cheese",
+       "nl": "kaas"
+      },
+      {
+       "emoji": "🥛",
+       "en": "milk",
+       "nl": "melk"
+      },
+      {
+       "emoji": "🍌",
+       "en": "banana",
+       "nl": "banaan"
+      },
+      {
+       "emoji": "🍎",
+       "en": "apple",
+       "nl": "appel"
+      },
+      {
+       "emoji": "🍞",
+       "en": "bread",
+       "nl": "brood"
+      }
+     ]
+    },
+    {
+     "emoji": "🍽️",
+     "sentences": [
+      "I eat a sandwich.",
+      "Breakfast is at eight."
+     ],
+     "subtitle": "Ontbijt, lunch en avondeten",
+     "title": "Maaltijden",
+     "words": [
+      {
+       "emoji": "🥤",
+       "en": "to drink",
+       "nl": "drinken"
+      },
+      {
+       "emoji": "🍪",
+       "en": "snack",
+       "nl": "tussendoortje"
+      },
+      {
+       "emoji": "🍲",
+       "en": "dinner",
+       "nl": "avondeten"
+      },
+      {
+       "emoji": "🥣",
+       "en": "breakfast",
+       "nl": "ontbijt"
+      },
+      {
+       "emoji": "🍽️",
+       "en": "to eat",
+       "nl": "eten"
+      }
+     ]
+    },
+    {
+     "emoji": "🍕",
+     "sentences": [
+      "I like pizza!",
+      "The soup is hot."
+     ],
+     "subtitle": "Pizza, kip, rijst, soep",
+     "title": "Lekker eten",
+     "words": [
+      {
+       "emoji": "🍚",
+       "en": "rice",
+       "nl": "rijst"
+      },
+      {
+       "emoji": "🧃",
+       "en": "juice",
+       "nl": "sap"
+      },
+      {
+       "emoji": "🍲",
+       "en": "soup",
+       "nl": "soep"
+      },
+      {
+       "emoji": "🍗",
+       "en": "chicken",
+       "nl": "kip"
+      },
+      {
+       "emoji": "🍰",
+       "en": "cake",
+       "nl": "cake"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 5,
+   "seasonal": false,
+   "story": {
+    "emoji": "🍕",
+    "sentences": [
+     {
+      "emoji": "🍎",
+      "en": "I like apples.",
+      "nl": "Ik vind appels lekker."
+     },
+     {
+      "emoji": "🥛",
+      "en": "I drink milk.",
+      "nl": "Ik drink melk."
+     },
+     {
+      "emoji": "🍕",
+      "en": "I like pizza!",
+      "nl": "Ik vind pizza lekker!"
+     }
+    ],
+    "title": "Lekker eten"
+   },
+   "title": "Eten & drinken",
+   "slug": "eten-en-drinken"
+  },
+  {
+   "description": "Kleuren benoemen en tellen tot tien",
+   "emoji": "🎨",
+   "lessons": [
+    {
+     "emoji": "🔴",
+     "sentences": [
+      "The sky is blue.",
+      "My bike is red."
+     ],
+     "subtitle": "Rood, blauw, groen, geel",
+     "title": "Kleuren",
+     "words": [
+      {
+       "emoji": "⚫",
+       "en": "black",
+       "nl": "zwart"
+      },
+      {
+       "emoji": "🟢",
+       "en": "green",
+       "nl": "groen"
+      },
+      {
+       "emoji": "🔴",
+       "en": "red",
+       "nl": "rood"
+      },
+      {
+       "emoji": "🔵",
+       "en": "blue",
+       "nl": "blauw"
+      },
+      {
+       "emoji": "🟡",
+       "en": "yellow",
+       "nl": "geel"
+      },
+      {
+       "emoji": "⚪",
+       "en": "white",
+       "nl": "wit"
+      }
+     ]
+    },
+    {
+     "emoji": "1️⃣",
+     "sentences": [
+      "I have two cats.",
+      "Count with me!"
+     ],
+     "subtitle": "Tellen van één tot zes",
+     "title": "Cijfers 1-6",
+     "words": [
+      {
+       "emoji": "5️⃣",
+       "en": "five",
+       "nl": "vijf"
+      },
+      {
+       "emoji": "1️⃣",
+       "en": "one",
+       "nl": "één"
+      },
+      {
+       "emoji": "2️⃣",
+       "en": "two",
+       "nl": "twee"
+      },
+      {
+       "emoji": "3️⃣",
+       "en": "three",
+       "nl": "drie"
+      },
+      {
+       "emoji": "4️⃣",
+       "en": "four",
+       "nl": "vier"
+      },
+      {
+       "emoji": "6️⃣",
+       "en": "six",
+       "nl": "zes"
+      }
+     ]
+    },
+    {
+     "emoji": "🔟",
+     "sentences": [
+      "How many books?",
+      "Count to ten!"
+     ],
+     "subtitle": "Zeven tot tien en tellen",
+     "title": "Cijfers 7-10",
+     "words": [
+      {
+       "emoji": "❓",
+       "en": "how many",
+       "nl": "hoeveel"
+      },
+      {
+       "emoji": "🔟",
+       "en": "ten",
+       "nl": "tien"
+      },
+      {
+       "emoji": "9️⃣",
+       "en": "nine",
+       "nl": "negen"
+      },
+      {
+       "emoji": "🔢",
+       "en": "to count",
+       "nl": "tellen"
+      },
+      {
+       "emoji": "7️⃣",
+       "en": "seven",
+       "nl": "zeven"
+      },
+      {
+       "emoji": "8️⃣",
+       "en": "eight",
+       "nl": "acht"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 6,
+   "seasonal": false,
+   "story": {
+    "emoji": "🎨",
+    "sentences": [
+     {
+      "emoji": "🔵",
+      "en": "The sky is blue.",
+      "nl": "De lucht is blauw."
+     },
+     {
+      "emoji": "2️⃣",
+      "en": "I have two cats.",
+      "nl": "Ik heb twee katten."
+     },
+     {
+      "emoji": "🔟",
+      "en": "Count to ten!",
+      "nl": "Tel tot tien!"
+     }
+    ],
+    "title": "Kleuren en cijfers"
+   },
+   "title": "Kleuren & cijfers",
+   "slug": "kleuren-en-cijfers"
+  },
+  {
+   "description": "Huisdieren en boerderijdieren",
+   "emoji": "🐶",
+   "lessons": [
+    {
+     "emoji": "🐶",
+     "sentences": [
+      "The dog barks.",
+      "I have a fish."
+     ],
+     "subtitle": "Hond, kat, vis, konijn",
+     "title": "Huisdieren",
+     "words": [
+      {
+       "emoji": "🐰",
+       "en": "rabbit",
+       "nl": "konijn"
+      },
+      {
+       "emoji": "🐶",
+       "en": "dog",
+       "nl": "hond"
+      },
+      {
+       "emoji": "🐟",
+       "en": "fish",
+       "nl": "vis"
+      },
+      {
+       "emoji": "🐱",
+       "en": "cat",
+       "nl": "kat"
+      },
+      {
+       "emoji": "🐦",
+       "en": "bird",
+       "nl": "vogel"
+      }
+     ]
+    },
+    {
+     "emoji": "🐄",
+     "sentences": [
+      "The cow says moo.",
+      "The ducks swim."
+     ],
+     "subtitle": "Paard, koe, varken, schaap",
+     "title": "Boerderijdieren",
+     "words": [
+      {
+       "emoji": "🐄",
+       "en": "cow",
+       "nl": "koe"
+      },
+      {
+       "emoji": "🐔",
+       "en": "chicken",
+       "nl": "kip"
+      },
+      {
+       "emoji": "🐑",
+       "en": "sheep",
+       "nl": "schaap"
+      },
+      {
+       "emoji": "🐴",
+       "en": "horse",
+       "nl": "paard"
+      },
+      {
+       "emoji": "🐷",
+       "en": "pig",
+       "nl": "varken"
+      },
+      {
+       "emoji": "🦆",
+       "en": "duck",
+       "nl": "eend"
+      }
+     ]
+    },
+    {
+     "emoji": "🔊",
+     "sentences": [
+      "The dog is big.",
+      "My cat says miaow.",
+      "The cow says moo."
+     ],
+     "subtitle": "Blaffen, miauwen, schattig",
+     "title": "Dierengeluiden",
+     "words": [
+      {
+       "emoji": "🥰",
+       "en": "cute",
+       "nl": "schattig"
+      },
+      {
+       "emoji": "🐾",
+       "en": "pet",
+       "nl": "huisdier"
+      },
+      {
+       "emoji": "🐘",
+       "en": "big",
+       "nl": "groot"
+      },
+      {
+       "emoji": "🔊",
+       "en": "to bark",
+       "nl": "blaffen"
+      },
+      {
+       "emoji": "🔊",
+       "en": "to meow",
+       "nl": "miauwen"
+      },
+      {
+       "emoji": "🐜",
+       "en": "small",
+       "nl": "klein"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 7,
+   "seasonal": false,
+   "story": {
+    "emoji": "🐶",
+    "sentences": [
+     {
+      "emoji": "🐶",
+      "en": "The dog barks.",
+      "nl": "De hond blaft."
+     },
+     {
+      "emoji": "🐱",
+      "en": "My cat says miaow.",
+      "nl": "Mijn kat zegt miauw."
+     },
+     {
+      "emoji": "🐟",
+      "en": "I have a fish.",
+      "nl": "Ik heb een vis."
+     }
+    ],
+    "title": "Huisdieren"
+   },
+   "title": "Dieren",
+   "slug": "dieren"
+  },
+  {
+   "description": "Schoolspullen en leren op school",
+   "emoji": "🏫",
+   "lessons": [
+    {
+     "emoji": "🏫",
+     "sentences": [
+      "My teacher is kind.",
+      "I go to school."
+     ],
+     "subtitle": "School, leerkracht, boek, potlood",
+     "title": "Schoolspullen",
+     "words": [
+      {
+       "emoji": "📖",
+       "en": "book",
+       "nl": "boek"
+      },
+      {
+       "emoji": "👩‍🏫",
+       "en": "teacher",
+       "nl": "leerkracht"
+      },
+      {
+       "emoji": "🧒",
+       "en": "pupil",
+       "nl": "leerling"
+      },
+      {
+       "emoji": "🏫",
+       "en": "classroom",
+       "nl": "klaslokaal"
+      },
+      {
+       "emoji": "✏️",
+       "en": "pencil",
+       "nl": "potlood"
+      }
+     ]
+    },
+    {
+     "emoji": "🎒",
+     "sentences": [
+      "My bag is heavy.",
+      "I draw with a crayon."
+     ],
+     "subtitle": "Tas, papier, liniaal, gum",
+     "title": "In de tas",
+     "words": [
+      {
+       "emoji": "📏",
+       "en": "ruler",
+       "nl": "liniaal"
+      },
+      {
+       "emoji": "🧑‍🏫",
+       "en": "board",
+       "nl": "bord"
+      },
+      {
+       "emoji": "📄",
+       "en": "paper",
+       "nl": "papier"
+      },
+      {
+       "emoji": "🎒",
+       "en": "bag",
+       "nl": "tas"
+      },
+      {
+       "emoji": "🖍️",
+       "en": "crayon",
+       "nl": "kleurpotlood"
+      }
+     ]
+    },
+    {
+     "emoji": "📚",
+     "sentences": [
+      "I learn English.",
+      "We read a book."
+     ],
+     "subtitle": "Leren, lezen, schrijven, spelen",
+     "title": "Leren op school",
+     "words": [
+      {
+       "emoji": "👂",
+       "en": "to listen",
+       "nl": "luisteren"
+      },
+      {
+       "emoji": "🧡",
+       "en": "friend",
+       "nl": "vriend(in)"
+      },
+      {
+       "emoji": "📚",
+       "en": "to learn",
+       "nl": "leren"
+      },
+      {
+       "emoji": "📖",
+       "en": "to read",
+       "nl": "lezen"
+      },
+      {
+       "emoji": "✍️",
+       "en": "to write",
+       "nl": "schrijven"
+      },
+      {
+       "emoji": "⚽",
+       "en": "to play",
+       "nl": "spelen"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 8,
+   "seasonal": false,
+   "story": {
+    "emoji": "🏫",
+    "sentences": [
+     {
+      "emoji": "🏫",
+      "en": "I go to school.",
+      "nl": "Ik ga naar school."
+     },
+     {
+      "emoji": "👩‍🏫",
+      "en": "My teacher is kind.",
+      "nl": "Mijn leerkracht is lief."
+     },
+     {
+      "emoji": "📖",
+      "en": "We read a book.",
+      "nl": "We lezen een boek."
+     }
+    ],
+    "title": "Op school"
+   },
+   "title": "Op school",
+   "slug": "op-school"
+  },
+  {
+   "description": "Speelgoed, de speeltuin en samen spelen",
+   "emoji": "🎈",
+   "lessons": [
+    {
+     "emoji": "⚽",
+     "sentences": [
+      "Let's play!",
+      "I have a new game."
+     ],
+     "subtitle": "Bal, pop, blokjes, puzzel",
+     "title": "Speelgoed",
+     "words": [
+      {
+       "emoji": "▶️",
+       "en": "to play",
+       "nl": "spelen"
+      },
+      {
+       "emoji": "🧩",
+       "en": "puzzle",
+       "nl": "puzzel"
+      },
+      {
+       "emoji": "⚽",
+       "en": "ball",
+       "nl": "bal"
+      },
+      {
+       "emoji": "🪆",
+       "en": "doll",
+       "nl": "pop"
+      },
+      {
+       "emoji": "🧱",
+       "en": "blocks",
+       "nl": "blokjes"
+      },
+      {
+       "emoji": "🎲",
+       "en": "game",
+       "nl": "spelletje"
+      }
+     ]
+    },
+    {
+     "emoji": "🛝",
+     "sentences": [
+      "We play at the playground.",
+      "The slide is fun."
+     ],
+     "subtitle": "Glijbaan, schommel, zandbak",
+     "title": "Speeltuin",
+     "words": [
+      {
+       "emoji": "🛝",
+       "en": "slide",
+       "nl": "glijbaan"
+      },
+      {
+       "emoji": "🏖️",
+       "en": "sandbox",
+       "nl": "zandbak"
+      },
+      {
+       "emoji": "🪑",
+       "en": "swing",
+       "nl": "schommel"
+      },
+      {
+       "emoji": "🛝",
+       "en": "playground",
+       "nl": "speeltuin"
+      },
+      {
+       "emoji": "🎁",
+       "en": "present",
+       "nl": "cadeau"
+      },
+      {
+       "emoji": "🧸",
+       "en": "toy",
+       "nl": "speelgoed"
+      }
+     ]
+    },
+    {
+     "emoji": "🤝",
+     "sentences": [
+      "Sharing is fun.",
+      "We play together."
+     ],
+     "subtitle": "Vriend, samen, leuk, delen",
+     "title": "Samen spelen",
+     "words": [
+      {
+       "emoji": "😢",
+       "en": "to lose",
+       "nl": "verliezen"
+      },
+      {
+       "emoji": "🍰",
+       "en": "to share",
+       "nl": "delen"
+      },
+      {
+       "emoji": "🤝",
+       "en": "together",
+       "nl": "samen"
+      },
+      {
+       "emoji": "🧡",
+       "en": "friend",
+       "nl": "vriend(in)"
+      },
+      {
+       "emoji": "😄",
+       "en": "fun",
+       "nl": "leuk"
+      },
+      {
+       "emoji": "🏆",
+       "en": "to win",
+       "nl": "winnen"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 9,
+   "seasonal": false,
+   "story": {
+    "emoji": "🎈",
+    "sentences": [
+     {
+      "emoji": "▶️",
+      "en": "Let's play!",
+      "nl": "Laten we spelen!"
+     },
+     {
+      "emoji": "🤝",
+      "en": "We play together.",
+      "nl": "We spelen samen."
+     },
+     {
+      "emoji": "😄",
+      "en": "Sharing is fun.",
+      "nl": "Delen is leuk."
+     }
+    ],
+    "title": "Samen spelen"
+   },
+   "title": "Spelen",
+   "slug": "spelen"
+  },
+  {
+   "description": "Vertellen hoe je je voelt",
+   "emoji": "😊",
+   "lessons": [
+    {
+     "emoji": "😊",
+     "sentences": [
+      "I am happy today!",
+      "Are you sad?"
+     ],
+     "subtitle": "Blij, verdrietig, boos, bang",
+     "title": "Basisgevoelens",
+     "words": [
+      {
+       "emoji": "😊",
+       "en": "happy",
+       "nl": "blij"
+      },
+      {
+       "emoji": "😠",
+       "en": "angry",
+       "nl": "boos"
+      },
+      {
+       "emoji": "🍽️",
+       "en": "hungry",
+       "nl": "hongerig"
+      },
+      {
+       "emoji": "😨",
+       "en": "scared",
+       "nl": "bang"
+      },
+      {
+       "emoji": "😴",
+       "en": "tired",
+       "nl": "moe"
+      },
+      {
+       "emoji": "😢",
+       "en": "sad",
+       "nl": "verdrietig"
+      }
+     ]
+    },
+    {
+     "emoji": "🤩",
+     "sentences": [
+      "She is proud.",
+      "I am excited!"
+     ],
+     "subtitle": "Opgewonden, verrast, trots",
+     "title": "Meer gevoelens",
+     "words": [
+      {
+       "emoji": "😲",
+       "en": "surprised",
+       "nl": "verrast"
+      },
+      {
+       "emoji": "🤩",
+       "en": "excited",
+       "nl": "opgewonden"
+      },
+      {
+       "emoji": "😑",
+       "en": "bored",
+       "nl": "verveeld"
+      },
+      {
+       "emoji": "🦁",
+       "en": "proud",
+       "nl": "trots"
+      },
+      {
+       "emoji": "🦸",
+       "en": "brave",
+       "nl": "dapper"
+      },
+      {
+       "emoji": "💛",
+       "en": "kind",
+       "nl": "vriendelijk"
+      }
+     ]
+    },
+    {
+     "emoji": "💭",
+     "sentences": [
+      "I feel good today.",
+      "How do you feel?",
+      "I am happy today!"
+     ],
+     "subtitle": "Voelen, vandaag, nu, morgen",
+     "title": "Hoe voel je je?",
+     "words": [
+      {
+       "emoji": "👍",
+       "en": "good",
+       "nl": "goed"
+      },
+      {
+       "emoji": "📆",
+       "en": "tomorrow",
+       "nl": "morgen"
+      },
+      {
+       "emoji": "⏰",
+       "en": "now",
+       "nl": "nu"
+      },
+      {
+       "emoji": "📅",
+       "en": "today",
+       "nl": "vandaag"
+      },
+      {
+       "emoji": "👎",
+       "en": "bad",
+       "nl": "slecht"
+      },
+      {
+       "emoji": "💭",
+       "en": "to feel",
+       "nl": "voelen"
+      }
+     ]
+    }
+   ],
+   "level": "groep4",
+   "order": 10,
+   "seasonal": false,
+   "story": {
+    "emoji": "😊",
+    "sentences": [
+     {
+      "emoji": "😊",
+      "en": "I am happy today!",
+      "nl": "Ik ben vandaag blij!"
+     },
+     {
+      "emoji": "😴",
+      "en": "I feel tired.",
+      "nl": "Ik voel me moe."
+     },
+     {
+      "emoji": "❓",
+      "en": "How do you feel?",
+      "nl": "Hoe voel jij je?"
+     }
+    ],
+    "title": "Gevoelens"
+   },
+   "title": "Gevoelens",
+   "slug": "gevoelens"
+  }
+ ]
+}

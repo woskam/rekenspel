@@ -1,59 +1,54 @@
 #!/usr/bin/env python3
 """
-Haalt de lesinhoud uit de ArtGames-app (Swift) en schrijft die als JSON
-naar engels/data/<niveau>.json, voor de Engelse oefenpagina's op artgames.nl.
+Haalt de lesinhoud uit de ArtGames-app en schrijft per niveau engels/data/<niveau>.json.
 
-Gebruik:
-  python3 tools/export_app_content.py /pad/naar/Taalkampioen/Data/Groep6Data.swift groep6
+  python3 tools/export_app_content.py /pad/naar/Taalkampioen
 
-Werkt voor bestanden waarin elk hoofdstuk bestaat uit LessonBuilder.vocabLesson(...)
-blokken en een LessonBuilder.simpleStory(...), zoals Groep6Data.swift.
+Het script compileert tools/export/main.swift samen met Models/ en Data/ van de app en laat
+de app zelf de inhoud opbouwen (ContentData.build(), inclusief ContentFixes). Zo is de
+website altijd gelijk aan wat kinderen in de app zien. Leenwoorden die de app niet oefent
+(zoals "pizza") staan er dus ook hier niet in.
 """
-import json, re, sys, os
+import glob, json, os, re, subprocess, sys, tempfile
 
-STR = r'"((?:[^"\\]|\\.)*)"'
-
-def unq(s):
-    return bytes(s, "utf-8").decode("unicode_escape").encode("latin-1").decode("utf-8") if "\\" in s else s
-
-def parse(src):
-    chapters = []
-    # Splits op hoofdstukken: elk hoofdstuk eindigt met chapters.append(Chapter(...))
-    parts = re.split(r'chapters\.append\(Chapter\(', src)
-    for i in range(1, len(parts)):
-        body = parts[i - 1][parts[i - 1].rfind("do {"):] if "do {" in parts[i - 1] else parts[i - 1]
-        head = parts[i]
-        m = re.search(r'order:\s*(\d+),\s*level:\s*\.(\w+),\s*title:\s*' + STR + r',\s*description:\s*' + STR + r',\s*emoji:\s*' + STR, head)
-        if not m:
-            continue
-        order, level, title, desc, emoji = m.groups()
-        lessons = []
-        for lm in re.finditer(r'vocabLesson\((.*?)dialogue:', body, re.S):
-            block = lm.group(1)
-            t = re.search(r'title:\s*' + STR + r',\s*subtitle:\s*' + STR + r',\s*emoji:\s*' + STR, block)
-            words = [{"en": unq(a), "nl": unq(b), "emoji": c} for a, b, c in re.findall(r'\(\s*' + STR + r',\s*' + STR + r',\s*' + STR + r'\s*\)', block.split("sentences:")[0])]
-            sents = re.findall(STR, re.search(r'sentences:\s*\[(.*?)\]', block, re.S).group(1)) if "sentences:" in block else []
-            lessons.append({"title": unq(t.group(1)), "subtitle": unq(t.group(2)), "emoji": t.group(3), "words": words, "sentences": [unq(s) for s in sents]})
-        story = None
-        sm = re.search(r'simpleStory\(title:\s*' + STR + r',\s*emoji:\s*' + STR + r',\s*sentences:\s*\[(.*?)\]\)\s*\n', body, re.S)
-        if sm:
-            lines = re.findall(r'\(emoji:\s*' + STR + r',\s*en:\s*' + STR + r',\s*nl:\s*' + STR, sm.group(3))
-            story = {"title": unq(sm.group(1)), "emoji": sm.group(2), "sentences": [{"emoji": e, "en": unq(a), "nl": unq(b)} for e, a, b in lines]}
-        chapters.append({"order": int(order), "level": level, "title": unq(title), "description": unq(desc), "emoji": emoji, "lessons": lessons, "story": story})
-    return chapters
+ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 
 def slug(s):
     s = s.lower().replace("&", "en").replace("'", "")
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+def export(app):
+    exe = os.path.join(tempfile.gettempdir(), "artgames-export-content")
+    files = [os.path.join(ROOT, "tools", "export", "main.swift")] + sorted(glob.glob(os.path.join(app, "Models", "*.swift"))) + sorted(glob.glob(os.path.join(app, "Data", "*.swift")))
+    subprocess.run(["swiftc", "-O", "-o", exe] + files, check=True)
+    return json.loads(subprocess.run([exe], check=True, capture_output=True).stdout)
 
 if __name__ == "__main__":
-    swift, level = sys.argv[1], sys.argv[2]
-    chapters = [c for c in parse(open(swift, encoding="utf-8").read()) if c["level"] == level]
+    app = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/Taalkampioen")
+    chapters = export(app)
+
+    # Woorden zonder emoji krijgen het emoji van hetzelfde woord elders in de app
+    emoji = {}
     for c in chapters:
-        c["slug"] = slug(c["title"])
-    out = os.path.join(os.path.dirname(__file__), "..", "engels", "data", level + ".json")
-    os.makedirs(os.path.dirname(out), exist_ok=True)
-    json.dump({"level": level, "chapters": chapters}, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    words = sum(len(l["words"]) for c in chapters for l in c["lessons"])
-    print(f"{len(chapters)} hoofdstukken, {sum(len(c['lessons']) for c in chapters)} lessen, {words} woorden -> {os.path.normpath(out)}")
+        for l in c["lessons"]:
+            for w in l["words"]:
+                if w["emoji"]: emoji.setdefault(w["en"].lower(), w["emoji"])
+    for c in chapters:
+        for l in c["lessons"]:
+            for w in l["words"]:
+                if not w["emoji"]: w["emoji"] = emoji.get(w["en"].lower(), "💬")
+
+    per = {}
+    for c in chapters:
+        per.setdefault(c["level"], []).append(c)
+    out_dir = os.path.join(ROOT, "engels", "data"); os.makedirs(out_dir, exist_ok=True)
+    for level, lst in per.items():
+        lst.sort(key=lambda c: (c["seasonal"], c["order"]))
+        used = set()
+        for c in lst:
+            s = slug(c["title"]); n = 2
+            while s in used: s = f"{slug(c['title'])}-{n}"; n += 1
+            used.add(s); c["slug"] = s
+        json.dump({"level": level, "chapters": lst}, open(os.path.join(out_dir, level + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        w = sum(len(l["words"]) for c in lst for l in c["lessons"])
+        print(f"{level}: {len(lst)} hoofdstukken, {w} woorden")

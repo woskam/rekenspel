@@ -2,7 +2,8 @@
 """
 Maakt de Engelse oefenpagina's van artgames.nl uit engels/data/<niveau>.json.
 
-  python3 tools/build_engels.py groep6
+  python3 tools/build_engels.py            # alle niveaus in engels/data/
+  python3 tools/build_engels.py groep6     # één niveau
 
 Schrijft engels/<niveau>/index.html (overzicht) en engels/<niveau>/<thema>/index.html.
 Draai eerst tools/export_app_content.py om de JSON uit de app bij te werken.
@@ -12,7 +13,7 @@ import json, os, sys, html
 ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 NAMEN = {"groep3": "Groep 3", "groep4": "Groep 4", "groep5": "Groep 5", "groep6": "Groep 6", "groep7": "Groep 7", "groep8": "Groep 8", "brugklas": "Brugklas"}
 APP = "https://apps.apple.com/app/artgames-engels-oefenen/id6836407113"
-V = "2"
+V = "3"
 
 def e(s): return html.escape(str(s), quote=True)
 
@@ -86,7 +87,7 @@ def thema_pagina(level, c, vorige, volgende):
     <span class="groot-emoji" aria-hidden="true">{c['emoji']}</span>
     <h1>{e(c['title'])}</h1>
     <p class="lead">{e(c['description'])}.</p>
-    <ul class="feiten"><li>{naam}</li><li>{len(woorden)} woorden</li><li>3 lessen</li>{'<li>Verhaaltje</li>' if verhaal else ''}</ul>
+    <ul class="feiten"><li>{naam}</li><li>{len(woorden)} woorden</li><li>{len(c['lessons'])} lessen</li>{'<li>Verhaaltje</li>' if verhaal else ''}</ul>
   </header>
 </div>
 
@@ -116,11 +117,20 @@ def thema_pagina(level, c, vorige, volgende):
 </html>
 """
 
+# Extra blokken op een overzichtspagina, bijvoorbeeld de oudere podcastlessen van de brugklas
+EXTRA = {
+    "brugklas": """<section style="padding:36px 0 0"><h2>Lessen met podcast</h2><p class="intro">Luister naar de podcast en oefen daarna met de woordenlijst, flashcards en spelletjes.</p>
+<div class="grid">
+<a class="card" href="les1/index.html" data-id="engels-bk-les1"><span class="icon">🎧</span><h3>Les 1: Introductie</h3><p>Podcast, woordenlijst, flashcards, multiple choice en memory.</p><span class="meta"><span class="tag">Podcast</span><span class="go">Start →</span></span></a>
+<a class="card" href="les2/index.html" data-id="engels-bk-les2"><span class="icon">⚽</span><h3>Les 2: Hobbies</h3><p>Podcast over hobby's en vrije tijd.</p><span class="meta"><span class="tag">Podcast</span><span class="go">Start →</span></span></a>
+</div></section>""",
+}
+
 def overzicht(level, chapters):
     naam = NAMEN[level]
     n_woorden = sum(len(l["words"]) for c in chapters for l in c["lessons"])
     kaarten = "".join(
-        f'<a class="card thema" href="{c["slug"]}/" data-id="engels-{level.replace("groep", "g")}-{c["slug"]}"><span class="icon">{c["emoji"]}</span><h3>{e(c["title"])}</h3>'
+        f'<a class="card thema" href="{c["slug"]}/" data-id="engels-{level.replace("groep", "g")}-{c["slug"]}"><span class="icon">{c["emoji"]}</span><h3>{e(c["title"])}{" <small class=seizoen>🎉 seizoen</small>" if c.get("seasonal") else ""}</h3>'
         f'<p>{e(c["description"])}.</p><span class="woordjes">{", ".join(e(w["en"]) for w in c["lessons"][0]["words"][:3])} …</span>'
         f'<span class="meta"><span class="tag">{sum(len(l["words"]) for l in c["lessons"])} woorden</span><span class="go">Oefen →</span></span></a>' for c in chapters)
     return kop(f"Engels {naam.lower()}: woordjes oefenen per thema | ArtGames",
@@ -134,12 +144,13 @@ def overzicht(level, chapters):
 </div>
 <main class="wrap">
   <div class="thema-grid">{kaarten}</div>
+  {EXTRA.get(level, "")}
   {APPTIP}
 </main>
 {FOOT}
 <script src="/assets/progress.js?v=1"></script>
 <script>
-document.querySelectorAll(".thema").forEach(function (a) {{
+document.querySelectorAll(".thema, [data-id]").forEach(function (a) {{
   var x = window.AG && AG.info(a.getAttribute("data-id")); if (!x) return;
   var s = document.createElement("span"); s.className = "done"; s.textContent = "✓ geoefend";
   s.style.cssText = "position:absolute;top:16px;right:16px;background:#e6f6ec;color:#23824a;font-weight:800;font-size:.8rem;border-radius:999px;padding:3px 10px";
@@ -150,8 +161,7 @@ document.querySelectorAll(".thema").forEach(function (a) {{
 </html>
 """
 
-if __name__ == "__main__":
-    level = sys.argv[1]
+def bouw(level):
     d = json.load(open(os.path.join(ROOT, "engels", "data", level + ".json"), encoding="utf-8"))
     ch = d["chapters"]
     base = os.path.join(ROOT, "engels", level)
@@ -160,4 +170,38 @@ if __name__ == "__main__":
     for i, c in enumerate(ch):
         p = os.path.join(base, c["slug"]); os.makedirs(p, exist_ok=True)
         open(os.path.join(p, "index.html"), "w", encoding="utf-8").write(thema_pagina(level, c, ch[i - 1] if i > 0 else None, ch[i + 1] if i + 1 < len(ch) else None))
-    print(f"{len(ch)} themapagina's + overzicht -> engels/{level}/")
+    print(f"{level}: {len(ch)} themapagina's + overzicht")
+
+def vakpagina():
+    """engels/index.html: alle niveaus op een rij."""
+    volgorde = ["groep4", "groep5", "groep6", "groep7", "groep8", "brugklas"]
+    kaarten = []
+    for lv in volgorde:
+        f = os.path.join(ROOT, "engels", "data", lv + ".json")
+        if not os.path.exists(f): continue
+        ch = json.load(open(f, encoding="utf-8"))["chapters"]
+        n = sum(len(l["words"]) for c in ch for l in c["lessons"])
+        themas = ", ".join(c["emoji"] + " " + e(c["title"]) for c in ch[:3])
+        kaarten.append(f'<a class="card" href="{lv}/"><span class="icon">{ch[0]["emoji"]}</span><h3>{NAMEN[lv]}</h3><p>{themas} …</p>'
+                       f'<span class="meta"><span class="tag">{len(ch)} thema\'s · {n} woorden</span><span class="go">Oefen →</span></span></a>')
+    html_ = kop("Engels oefenen voor groep 4 tot de brugklas | ArtGames", "Gratis Engelse woordjes oefenen per groep en thema, met flashcards, memory, een quiz en uitspraak.", "/engels/") + NAV + f"""  <header class="wrap kop">
+    <div class="crumbs"><a href="/">ArtGames</a></div>
+    <h1>Engels oefenen</h1>
+    <p class="lead">Kies je groep. Per thema oefen je de woorden met flashcards, memory, een quiz en een verhaaltje.</p>
+  </header>
+</div>
+<main class="wrap">
+  <div class="thema-grid">{''.join(kaarten)}</div>
+  {APPTIP}
+</main>
+{FOOT}
+</body>
+</html>
+"""
+    open(os.path.join(ROOT, "engels", "index.html"), "w", encoding="utf-8").write(html_)
+
+if __name__ == "__main__":
+    levels = sys.argv[1:] or [os.path.basename(f)[:-5] for f in sorted(os.listdir(os.path.join(ROOT, "engels", "data"))) if f.endswith(".json")]
+    for lv in levels:
+        bouw(lv)
+    vakpagina()

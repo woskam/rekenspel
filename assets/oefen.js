@@ -6,15 +6,26 @@
   var D = JSON.parse(document.getElementById("les-data").textContent);
   var ALLE = [].concat.apply([], D.lessons.map(function (l) { return l.words; }));
 
-  /* ── Uitspraak: bij voorkeur een Engelse stem die op het apparaat zelf draait ── */
-  var stem = null;
+  /* ── Uitspraak: eerst de ingesproken mp3-bestanden, anders een Engelse stem op het apparaat ── */
+  var AUDIO = null, speler = null, stem = null;
+  fetch("/engels/audio/index.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { AUDIO = j; klaarVoorGeluid(); }).catch(function () {});
   function kiesStem() {
     if (!("speechSynthesis" in window)) return;
     var v = speechSynthesis.getVoices().filter(function (x) { return /^en(-|_)/i.test(x.lang); });
     stem = v.filter(function (x) { return x.localService && /GB/i.test(x.lang); })[0] || v.filter(function (x) { return x.localService; })[0] || null;
+    klaarVoorGeluid();
   }
   if ("speechSynthesis" in window) { kiesStem(); speechSynthesis.onvoiceschanged = kiesStem; }
+  function kanSpreken() { return !!(AUDIO || stem); }
+  function klaarVoorGeluid() { if (kanSpreken()) document.documentElement.classList.remove("geen-stem"); }
   function spreek(tekst, langzaam) {
+    var f = AUDIO && AUDIO[String(tekst).trim()];
+    if (f) {
+      if (speler) speler.pause();
+      speler = new Audio("/engels/audio/" + f); speler.playbackRate = langzaam ? 0.7 : 1;
+      speler.play().catch(function () {});
+      return;
+    }
     if (!("speechSynthesis" in window) || !stem) return;
     speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(tekst); u.voice = stem; u.lang = stem.lang; u.rate = langzaam ? 0.6 : 0.9;
@@ -24,7 +35,7 @@
     var b = e.target.closest("[data-spreek]"); if (!b) return;
     e.preventDefault(); e.stopPropagation(); spreek(b.getAttribute("data-spreek"), b.hasAttribute("data-langzaam"));
   });
-  window.setTimeout(function () { if (!stem) document.documentElement.classList.add("geen-stem"); }, 1500);
+  window.setTimeout(function () { if (!kanSpreken()) document.documentElement.classList.add("geen-stem"); }, 1500);
 
   function schud(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -121,7 +132,7 @@
         bewaar("Quiz", p, goed + " van de 10 goed");
         return klaar(box, goed >= 8 ? "Super gedaan!" : "Quiz klaar!", goed + " van de 10 goed.", p, quiz);
       }
-      var w = vragen[i], luister = stem && i % 2 === 1;
+      var w = vragen[i], luister = kanSpreken() && i % 2 === 1;
       var opties = schud([w].concat(schud(ALLE.filter(function (x) { return x.en !== w.en; })).slice(0, 3)));
       box.innerHTML = '<p class="teller">Vraag ' + (i + 1) + " van 10 · " + goed + " goed</p>" +
         (luister
