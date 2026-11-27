@@ -2237,7 +2237,7 @@
     },
     {
      "title": "Leren & toetsen",
-     "subtitle": "Leren, nakijken, slagen",
+     "subtitle": "Leren, herhalen, slagen",
      "emoji": "📝",
      "words": [
       {
@@ -2247,8 +2247,8 @@
       },
       {
        "en": "to revise",
-       "nl": "nakijken",
-       "emoji": "📝"
+       "nl": "leren voor een toets",
+       "emoji": "📚"
       },
       {
        "en": "test",
