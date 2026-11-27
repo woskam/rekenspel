@@ -1,0 +1,99 @@
+/* ArtGames: Engelse themapagina's en overzicht per niveau */
+[hidden] { display: none !important; }
+.top .wrap.kop { position: relative; z-index: 1; padding: 18px 20px 96px; }
+.kop .groot-emoji { font-size: 3rem; line-height: 1; margin-bottom: 8px; display: block; }
+.kop .feiten { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; padding: 0; list-style: none; }
+.kop .feiten li { background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.32); border-radius: 999px; padding: 4px 12px; font-weight: 700; font-size: .9rem; }
+
+.oefen { position: relative; z-index: 2; margin-top: -70px; background: var(--card); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); padding: 18px; }
+.tabbar { display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 20px; }
+.tabbar button { font: inherit; font-weight: 800; border: 0; background: var(--soft); color: var(--ink); padding: 10px 16px; border-radius: 14px; cursor: pointer; }
+.tabbar button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.paneel { min-height: 320px; }
+@media (max-width: 560px) { .tabbar button { flex: 1 1 40%; padding: 10px 8px; } .oefen { padding: 14px 12px; } }
+
+.spk { font-size: 1.05rem; border: 0; background: var(--soft); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; flex: none; }
+.spk.groot { width: 84px; height: 84px; font-size: 2.2rem; box-shadow: 0 8px 20px rgba(47,127,232,.25); }
+.geen-stem .spk, .geen-stem [data-langzaam] { display: none; }
+
+/* Woordenlijst */
+.les-blok + .les-blok { margin-top: 26px; }
+.les-blok h3 { margin: 0 0 10px; font-size: 1.15rem; }
+.les-blok h3 small { color: var(--muted); font-weight: 600; font-size: .9rem; margin-left: 6px; }
+.woorden { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0; }
+.woorden li { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 10px 12px; }
+.woorden .emoji { font-size: 1.7rem; width: 36px; text-align: center; }
+.woorden b { display: block; font-size: 1.05rem; }
+.woorden span.nl { color: var(--muted); font-size: .92rem; }
+.woorden li > div { flex: 1; }
+.zinnetje { margin-top: 10px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+
+/* Flashcards */
+.teller { text-align: center; color: var(--muted); font-weight: 700; margin: 0 0 14px; }
+.fc-kaart { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 460px; min-height: 260px; margin: 0 auto; border: 0; border-radius: 26px; background: var(--brand); color: #fff; font: inherit; cursor: pointer; box-shadow: 0 16px 36px rgba(10,40,80,.18); padding: 20px; }
+.fc-kaart .emoji { font-size: 3.4rem; }
+.fc-kaart .woord { font-size: 2rem; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 2px 10px rgba(10,40,80,.2); }
+.fc-kaart .hint { opacity: .9; font-size: .92rem; }
+.fc-kaart.om { background: var(--card); color: var(--ink); border: 3px solid #65cf8a; }
+.fc-kaart.om .woord { text-shadow: none; }
+.fc-kaart.om .hint { color: var(--muted); }
+.fc-knoppen { display: flex; gap: 12px; justify-content: center; margin-top: 18px; }
+.btn.rood { background: #e5484d; } .btn.groen { background: #2e9e5b; }
+.btn.licht { background: var(--soft); color: var(--ink); }
+
+/* Memory */
+.les-keuze { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+.les-keuze .choice { font-size: .9rem; padding: 6px 12px; }
+.mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 620px; margin: 0 auto; }
+@media (max-width: 520px) { .mem-grid { grid-template-columns: repeat(3, 1fr); } }
+.mem-kaart { position: relative; aspect-ratio: 1 / 1; border: 0; border-radius: 18px; font: inherit; font-weight: 800; cursor: pointer; background: var(--brand); color: #fff; padding: 6px; box-shadow: 0 6px 14px rgba(10,40,80,.12); }
+.mem-kaart .voor { font-size: 1.8rem; }
+.mem-kaart .achter { display: none; flex-direction: column; align-items: center; gap: 4px; font-size: .95rem; line-height: 1.15; word-break: break-word; }
+.mem-kaart .achter .emoji { font-size: 1.6rem; }
+.mem-kaart.om, .mem-kaart.gevonden { background: var(--card); color: var(--ink); border: 2px solid var(--line); }
+.mem-kaart.om .voor, .mem-kaart.gevonden .voor { display: none; }
+.mem-kaart.om .achter, .mem-kaart.gevonden .achter { display: flex; }
+.mem-kaart.gevonden { border-color: #65cf8a; background: #e6f6ec; color: #1d6b3d; }
+@media (prefers-color-scheme: dark) { .mem-kaart.gevonden { background: #183626; color: #a6e9bd; } }
+
+/* Quiz */
+.vraag { text-align: center; margin-bottom: 18px; }
+.vraag .emoji.groot { font-size: 3.6rem; display: block; }
+.vraag p { font-size: 1.25rem; margin: 10px 0 0; }
+.opties { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 560px; margin: 0 auto; }
+@media (max-width: 460px) { .opties { grid-template-columns: 1fr; } }
+.optie { font: inherit; font-weight: 800; font-size: 1.1rem; padding: 16px; border-radius: 16px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+.optie:hover { border-color: var(--blue); }
+.optie.goed { background: #e6f6ec; border-color: #2e9e5b; color: #1d6b3d; }
+.optie.fout { background: #fdecec; border-color: #e5484d; color: #9b2226; }
+.uitleg { text-align: center; min-height: 40px; margin-top: 14px; display: flex; gap: 8px; align-items: center; justify-content: center; }
+
+/* Klaar */
+.klaar { text-align: center; padding: 30px 10px; }
+.klaar .sterren { font-size: 2.6rem; }
+.klaar h3 { font-size: 1.6rem; margin: 6px 0; }
+.klaar p { color: var(--muted); margin: 0 0 18px; }
+
+/* Verhaal */
+.verhaal { max-width: 640px; margin: 0 auto; display: grid; gap: 10px; }
+.verhaal h3 { text-align: center; font-size: 1.4rem; margin: 0 0 6px; }
+.zin { display: flex; gap: 12px; align-items: flex-start; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+.zin .emoji { font-size: 1.7rem; }
+.zin > div { flex: 1; }
+.zin .en { font-weight: 800; font-size: 1.1rem; }
+.zin .nl { display: none; color: var(--muted); }
+.zin.vertaald .nl { display: block; }
+.zin .toon { font: inherit; font-size: .85rem; color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; }
+
+/* App-tip */
+.app-tip { display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--brand); color: #fff; border-radius: 24px; padding: 22px 26px; margin-top: 28px; }
+.app-tip b { font-size: 1.2rem; display: block; }
+.app-tip p { margin: 4px 0 0; opacity: .95; }
+.nav-thema { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.nav-thema a { font-weight: 700; text-decoration: none; }
+
+/* Overzicht per niveau */
+.thema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; position: relative; z-index: 2; margin-top: -70px; }
+.thema { position: relative; }
+.thema .woordjes { color: var(--muted); font-size: .9rem; }
+.ag-mark { font-size: .9em; }

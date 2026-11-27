@@ -32,6 +32,10 @@ window.ARTGAMES = {
       emoji: "📱", titel: "ArtGames-app", tekst: "Luisteren, nazeggen en lezen in korte lessen op je eigen niveau. Gratis voor iPhone en iPad.",
       href: "app/", label: "Bekijk de app" },
 
+    { vak: "engels", type: "les", niveaus: ["groep6"],
+      emoji: "📚", titel: "Engels groep 6", tekst: "15 thema's met 270 woorden: flashcards, memory, een quiz en verhaaltjes, met uitspraak.",
+      id: "engels-g6", href: "engels/groep6/", label: "Oefen" },
+
     { vak: "engels", type: "les", niveaus: ["brugklas"],
       emoji: "🎧", titel: "Les 1: Introductie", tekst: "Podcast, woordenlijst, flashcards, multiple choice en memory.",
       id: "engels-bk-les1", href: "engels/brugklas/les1/index.html", label: "Start" },
