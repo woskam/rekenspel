@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, #2d5016 0%, #1a3d0a 100%);
+    font-family: ui-rounded, "SF Pro Rounded", -apple-system, system-ui, "Segoe UI", sans-serif;
+    background: linear-gradient(rgba(8,30,60,.18), rgba(8,30,60,.18)), linear-gradient(150deg, #3392f5 0%, #4fbf7f 55%, #f0a23c 100%) fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@ h1 {
 .question {
     font-size: 2.2em;
     font-weight: bold;
-    color: #2d5016;
+    color: #1f63c4;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -94,14 +94,14 @@ h1 {
 
 .strategies-box summary {
     font-weight: bold;
-    color: #2d5016;
+    color: #1f63c4;
     font-size: 1em;
     padding: 10px;
     user-select: none;
 }
 
 .strategies-box summary:hover {
-    color: #1a3d0a;
+    color: #174d99;
 }
 
 #strategies {
@@ -113,13 +113,13 @@ h1 {
 .strategy {
     background: white;
     padding: 12px;
-    border-left: 4px solid #3a6b1f;
+    border-left: 4px solid #2f7fe8;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
 .strategy strong {
-    color: #2d5016;
+    color: #1f63c4;
     display: block;
     margin-bottom: 8px;
 }
@@ -149,7 +149,7 @@ input {
     flex: 1;
     padding: 15px;
     font-size: 1.1em;
-    border: 2px solid #3a6b1f;
+    border: 2px solid #2f7fe8;
     border-radius: 8px;
     text-align: center;
     transition: border-color 0.3s;
@@ -157,7 +157,7 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #2d5016;
+    border-color: #1f63c4;
     box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
 }
 
@@ -165,7 +165,7 @@ input:focus {
     padding: 15px 30px;
     font-size: 1.1em;
     font-weight: bold;
-    background: linear-gradient(135deg, #3a6b1f 0%, #2d5016 100%);
+    background: linear-gradient(135deg, #2f7fe8 0%, #1f63c4 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -230,7 +230,7 @@ input:focus {
     padding: 15px;
     font-size: 1.1em;
     background: white;
-    color: #2d5016;
+    color: #1f63c4;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -241,3 +241,10 @@ input:focus {
 .reset-btn:hover {
     background: #f0f0f0;
 }
+/* ── ArtGames-stijl ── */
+body { padding-top: 76px; position: relative; }
+.ag-home { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.32); padding: 5px 14px 5px 5px; border-radius: 999px; backdrop-filter: blur(6px); }
+.ag-home img { width: 30px; height: 30px; border-radius: 8px; }
+.ag-home:hover { background: rgba(255,255,255,.28); }
+.back-link { border-radius: 999px !important; }
+.question-box, .lesson-card, .game-card, .podcast-card, .flashcard, .card, .subject-card { border-radius: 20px; }
