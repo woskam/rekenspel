@@ -31,6 +31,15 @@
 .card.app p, .card.app .go { color: #fff; opacity: .95; }
 .card.app .tag { background: rgba(255,255,255,.25); color: #fff; }
 .card.app .icon { background: rgba(255,255,255,.25); }
+.verder { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; background: var(--soft); border-radius: 18px; padding: 14px 18px; }
+.verder b { display: block; font-size: 1.1rem; }
+.verder span { color: var(--muted); font-size: .95rem; }
+.streak { font-weight: 800; color: var(--orange); white-space: nowrap; }
+.done { position: absolute; top: 16px; right: 16px; background: #e6f6ec; color: #23824a; font-weight: 800; font-size: .8rem; border-radius: 999px; padding: 3px 10px; }
+@media (prefers-color-scheme: dark) { .done { background: #183626; color: #7fdca0; } }
+.choice.add { border-style: dashed; color: var(--muted); }
+.private { color: var(--muted); font-size: .92rem; text-align: center; margin: 28px 0 0; }
+.private button { font: inherit; color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .empty { background: var(--card); border: 2px dashed var(--line); border-radius: var(--radius); padding: 26px; text-align: center; color: var(--muted); }
 .empty b { color: var(--ink); display: block; font-size: 1.1rem; margin-bottom: 4px; }
 
@@ -78,6 +87,11 @@
 
 <main class="wrap">
   <div class="picker" role="group" aria-label="Kies wat je wilt oefenen">
+    <div id="verder"></div>
+    <div class="row">
+      <span class="label" id="lbl-speler">Speler</span>
+      <div class="choices" id="spelers" aria-labelledby="lbl-speler"></div>
+    </div>
     <div class="row">
       <span class="label" id="lbl-niveau">Niveau</span>
       <div class="choices" id="niveaus" aria-labelledby="lbl-niveau"></div>
@@ -99,6 +113,8 @@
       </div>
     </noscript>
   </section>
+
+  <p class="private">🔒 Je voortgang blijft alleen in deze browser. We slaan niets op en gebruiken geen cookies. <button type="button" id="wis">Wis mijn voortgang</button></p>
 
   <section class="app-band" style="padding:0">
     <div class="text">
@@ -127,7 +143,8 @@
   </div>
 </footer>
 
-<script src="assets/catalog.js?v=1"></script>
+<script src="assets/progress.js?v=1"></script>
+<script src="assets/catalog.js?v=2"></script>
 <script>
 (function () {
   var D = window.ARTGAMES, KEY = "artgames.keuze";
@@ -158,12 +175,47 @@
     });
   }
 
+  function spelers() {
+    var box = document.getElementById("spelers"); box.innerHTML = "";
+    var lijst = AG.spelers().filter(function (p) { return p.naam; });
+    lijst.forEach(function (p) {
+      var b = el("button", { type: "button", class: "choice", "aria-pressed": String(p.actief) }, "🙂\u00a0" + esc(p.naam));
+      b.addEventListener("click", function () { AG.kies(p.id); render(); });
+      box.appendChild(b);
+    });
+    var add = el("button", { type: "button", class: "choice add" }, lijst.length ? "+ Nieuwe speler" : "+ Vul je naam in");
+    add.addEventListener("click", function () {
+      var n = window.prompt("Hoe heet je? (een voornaam of bijnaam is genoeg)");
+      if (n && n.trim()) { AG.nieuw(n); render(); }
+    });
+    box.appendChild(add);
+  }
+
+  function verder() {
+    var box = document.getElementById("verder"), sp = AG.speler(), l = sp.laatst; box.innerHTML = "";
+    if (!l) return;
+    var r = AG.reeks(), info = AG.info(l.id) || {};
+    var w = el("div", { class: "verder" },
+      "<div><b>" + (sp.naam ? "Welkom terug, " + esc(sp.naam) + "!" : "Welkom terug!") + "</b><span>Ga verder met " + esc(l.titel) +
+      (info.laatsteTekst ? " · laatst: " + esc(info.laatsteTekst) : "") + "</span></div>" +
+      '<div style="display:flex;gap:14px;align-items:center">' + (r > 1 ? '<span class="streak">🔥 ' + r + " dagen op rij</span>" : "") +
+      '<a class="btn" href="' + esc(l.href) + '">Ga verder →</a></div>');
+    box.appendChild(w);
+  }
+
+  function gespeeld(id) {
+    if (!id) return 0; var n = 0, sp = AG.speler().spellen;
+    Object.keys(sp).forEach(function (k) { if (k === id || k.indexOf(id + "-") === 0) n += Math.max(1, sp[k].keer || 0); });
+    return n;
+  }
+
   function kaart(s) {
     var v = vakById(s.vak);
     var tags = s.niveaus.length >= 3 ? naamNiveau(s.niveaus[0]) + " t/m " + naamNiveau(s.niveaus[s.niveaus.length - 1]) : s.niveaus.map(naamNiveau).join(", ");
     var a = el("a", { class: "card" + (s.type === "app" ? " app" : ""), href: s.href },
       '<span class="icon">' + s.emoji + "</span><h3>" + esc(s.titel) + "</h3><p>" + esc(s.tekst) + "</p>" +
       '<span class="meta"><span class="tag">' + esc(tags) + '</span><span class="go">' + esc(s.label) + " →</span></span>");
+    if (gespeeld(s.id)) a.appendChild(el("span", { class: "done" }, "✓ gespeeld"));
     return a;
   }
 
@@ -173,6 +225,7 @@
     url.search = (state.niveau !== "alle" || state.vak !== "alle") ? "?niveau=" + state.niveau + "&vak=" + state.vak : "";
     history.replaceState(null, "", url);
 
+    spelers(); verder();
     knoppen(document.getElementById("niveaus"), D.NIVEAUS, "niveau");
     knoppen(document.getElementById("vakken"), D.VAKKEN, "vak");
 
@@ -200,6 +253,12 @@
     document.getElementById("result-title").textContent = titel;
     document.getElementById("result-count").textContent = totaal === 1 ? "1 spel" : totaal + " spellen";
   }
+
+  document.getElementById("wis").addEventListener("click", function () {
+    if (window.confirm("Weet je zeker dat je alle voortgang en namen op dit apparaat wilt wissen?")) {
+      AG.wisAlles(); try { localStorage.removeItem(KEY); } catch (e) {} location.href = location.pathname;
+    }
+  });
 
   render();
 })();

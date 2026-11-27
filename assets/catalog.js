@@ -4,6 +4,8 @@
  *
  * Nieuw vak?    Voeg een regel toe aan VAKKEN.
  * Nieuw spel?   Voeg een object toe aan SPELLEN met het vak, de niveaus en de link.
+ *               Het id is hetzelfde als in AG.spel({ id }) op de spelpagina, zodat de
+ *               homepage kan laten zien wat al gespeeld is.
  */
 window.ARTGAMES = {
   NIVEAUS: [
@@ -32,22 +34,22 @@ window.ARTGAMES = {
 
     { vak: "engels", type: "les", niveaus: ["brugklas"],
       emoji: "🎧", titel: "Les 1: Introductie", tekst: "Podcast, woordenlijst, flashcards, multiple choice en memory.",
-      href: "engels/brugklas/les1/index.html", label: "Start" },
+      id: "engels-bk-les1", href: "engels/brugklas/les1/index.html", label: "Start" },
     { vak: "engels", type: "les", niveaus: ["brugklas"],
       emoji: "⚽", titel: "Les 2: Hobbies", tekst: "Podcast over hobby's en vrije tijd.",
-      href: "engels/brugklas/les2/index.html", label: "Start" },
+      id: "engels-bk-les2", href: "engels/brugklas/les2/index.html", label: "Start" },
 
     { vak: "rekenen", type: "spel", niveaus: ["groep7", "groep8", "brugklas"],
       emoji: "✏️", titel: "Tafels oefenen", tekst: "Grote tafels van 11 tot 25 met uitleg over slimme rekenstrategieën.",
-      href: "rekenspel/spel-tafels.html", label: "Speel" },
+      id: "rekenen-tafels", href: "rekenspel/spel-tafels.html", label: "Speel" },
     { vak: "rekenen", type: "spel", niveaus: ["groep4", "groep5", "groep6", "groep7", "groep8", "brugklas"],
       emoji: "🎯", titel: "Multiple choice", tekst: "Kies een tafel van 1 tot 20 en kies het juiste antwoord uit vier mogelijkheden.",
-      href: "rekenspel/spel-multiple-choice.html", label: "Speel" },
+      id: "rekenen-mc", href: "rekenspel/spel-multiple-choice.html", label: "Speel" },
     { vak: "rekenen", type: "spel", niveaus: ["groep4", "groep5", "groep6", "groep7", "groep8", "brugklas"],
       emoji: "🧠", titel: "Memory", tekst: "Kies een tafel van 1 tot 20 en zoek bij elke som het juiste antwoord.",
-      href: "rekenspel/spel-memory.html", label: "Speel" },
+      id: "rekenen-memory", href: "rekenspel/spel-memory.html", label: "Speel" },
     { vak: "rekenen", type: "spel", niveaus: ["groep4", "groep5", "groep6", "groep7", "groep8", "brugklas"],
       emoji: "⚡", titel: "Speed challenge", tekst: "Kies een tafel van 1 tot 20: zoveel mogelijk goed in 60 seconden.",
-      href: "rekenspel/spel-speed.html", label: "Speel" }
+      id: "rekenen-speed", href: "rekenspel/spel-speed.html", label: "Speel" }
   ]
 };

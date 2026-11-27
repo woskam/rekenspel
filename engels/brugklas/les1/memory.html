@@ -400,5 +400,10 @@
         // Initialize
         startGame();
     </script>
+<script src="/assets/progress.js?v=1"></script>
+<script>
+AG.spel({ id: "engels-bk-les1-memory", titel: "Les 1 · Memory", vak: "engels" });
+AG.naAfloop("showResults", function () { return { deel: document.getElementById("category").selectedOptions[0].text, procent: attempts ? Math.round(matchedPairs / attempts * 100) : 0, tekst: "klaar in " + attempts + " beurten" }; });
+</script>
 </body>
 </html>
